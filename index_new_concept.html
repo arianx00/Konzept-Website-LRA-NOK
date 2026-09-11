@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landratsamt Neckar-Odenwald-Kreis &#8211; Willkommen</title>
+  <meta name="description" content="Das Landratsamt Neckar-Odenwald-Kreis &#8211; Ihr Partner fur Burgerservice, digitale Verwaltung und lokale Themen im Neckar-Odenwald-Kreis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --nok-green: #2a7d2a;
+      --nok-green-dark: #1e5c1e;
+      --nok-green-light: #3a9e3a;
+      --nok-green-xlight: #f0f7f0;
+      --white: #ffffff;
+      --gray-50: #f8f9fa;
+      --gray-100: #f0f1f2;
+      --gray-200: #e4e5e7;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --text-primary: #1a2e1a;
+      --text-secondary: #4a5568;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.10),0 2px 6px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.12),0 4px 10px rgba(0,0,0,0.06);
+      --shadow-hover: 0 14px 36px rgba(42,125,42,0.18),0 4px 14px rgba(0,0,0,0.08);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+      --header-height: 80px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Lato',sans-serif;font-size:16px;line-height:1.6;color:var(--text-primary);background:var(--white);overflow-x:hidden}
+    a{color:var(--nok-green);text-decoration:none;transition:color var(--transition)}
+    a:hover{color:var(--nok-green-dark)}
+    a:focus-visible{outline:3px solid var(--nok-green);outline-offset:2px;border-radius:3px}
+    ul{list-style:none}
+    button{font-family:inherit;cursor:pointer;border:none;background:none}
+    .container{max-width:1240px;margin:0 auto;padding:0 24px}
+    .section-title{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;color:var(--text-primary);margin-bottom:8px}
+    .section-subtitle{font-size:1.05rem;color:var(--text-secondary);margin-bottom:40px}
+    .section-header{margin-bottom:40px}
+    .section-header .section-title::after{content:'';display:block;width:52px;height:4px;background:var(--nok-green);border-radius:2px;margin-top:10px}
+    .text-center{text-align:center}
+    .fade-up{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+    .fade-up-delay-1{transition-delay:.1s}
+    .fade-up-delay-2{transition-delay:.2s}
+    .fade-up-delay-3{transition-delay:.3s}
+
+    /* TOP BAR */
+    #top-bar{background:var(--nok-green-dark);color:var(--white);font-size:.82rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+    .top-bar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .top-bar-left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .top-bar-left a{color:rgba(255,255,255,0.85);font-size:.82rem;display:flex;align-items:center;gap:5px;transition:color var(--transition)}
+    .top-bar-left a:hover{color:var(--white)}
+    .top-bar-divider{color:rgba(255,255,255,0.3);font-size:.75rem}
+    .top-bar-right{display:flex;align-items:center;gap:12px}
+    .top-bar-right a{color:rgba(255,255,255,0.85);display:flex;align-items:center;gap:5px;font-size:.82rem;transition:color var(--transition)}
+    .top-bar-right a:hover{color:var(--white)}
+
+    /* HEADER */
+    #site-header{position:sticky;top:0;z-index:1000;background:var(--white);box-shadow:var(--shadow-sm);transition:box-shadow var(--transition),background var(--transition)}
+    #site-header.scrolled{box-shadow:var(--shadow-md);background:rgba(255,255,255,0.97);backdrop-filter:blur(8px)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-height);gap:24px}
+    .site-logo{display:flex;align-items:center;gap:14px;text-decoration:none;flex-shrink:0}
+    .logo-icon{width:52px;height:52px}
+    .logo-text-block{display:flex;flex-direction:column}
+    .logo-nok{font-size:1.75rem;font-weight:900;color:var(--nok-green);letter-spacing:.08em;line-height:1}
+    .logo-sub{font-size:.7rem;font-weight:400;color:var(--gray-500);letter-spacing:.04em;line-height:1.3;text-transform:uppercase}
+    .main-nav{display:flex;align-items:center;flex:1}
+    .nav-list{display:flex;align-items:center;gap:2px;list-style:none;height:100%}
+    .nav-item{position:relative;height:var(--header-height);display:flex;align-items:center}
+    .nav-link{display:flex;align-items:center;gap:5px;padding:8px 14px;font-size:.92rem;font-weight:700;color:var(--gray-700);border-radius:var(--radius-sm);transition:color var(--transition),background var(--transition);white-space:nowrap;height:100%;cursor:pointer;border-bottom:3px solid transparent;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:var(--nok-green);border-bottom-color:var(--nok-green);background:var(--nok-green-xlight)}
+    .chevron{transition:transform var(--transition);font-size:.65rem}
+    .nav-item:hover .chevron{transform:rotate(180deg)}
+    .dropdown{position:absolute;top:100%;left:0;background:var(--white);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);border:1px solid var(--gray-200);min-width:320px;padding:12px;opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity var(--transition),transform var(--transition);z-index:500}
+    .nav-item:hover .dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+    .dropdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+    .dropdown-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);font-size:.88rem;color:var(--gray-700);transition:background var(--transition),color var(--transition);text-decoration:none}
+    .dropdown-item:hover{background:var(--nok-green-xlight);color:var(--nok-green-dark)}
+    .dropdown-item-icon{font-size:1.1rem;flex-shrink:0}
+    .dropdown-item-text{font-weight:700;font-size:.83rem}
+    .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    .search-form{display:flex;align-items:center;background:var(--gray-100);border:1.5px solid var(--gray-200);border-radius:24px;overflow:hidden;transition:border-color var(--transition),box-shadow var(--transition)}
+    .search-form:focus-within{border-color:var(--nok-green);box-shadow:0 0 0 3px rgba(42,125,42,0.12)}
+    .search-input{background:transparent;border:none;outline:none;padding:8px 14px;font-size:.88rem;font-family:inherit;color:var(--text-primary);width:180px}
+    .search-input::placeholder{color:var(--gray-500)}
+    .search-btn{background:none;border:none;padding:8px 12px;cursor:pointer;color:var(--gray-500);transition:color var(--transition);display:flex;align-items:center}
+    .search-btn:hover{color:var(--nok-green)}
+    .search-btn svg{width:16px;height:16px}
+    .btn-termin{background:linear-gradient(135deg,var(--nok-green),var(--nok-green-light));color:var(--white);padding:10px 20px;border-radius:24px;font-size:.88rem;font-weight:700;white-space:nowrap;transition:transform var(--transition),box-shadow var(--transition);display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(42,125,42,0.3)}
+    .btn-termin:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(42,125,42,0.4);color:var(--white)}
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer;border-radius:var(--radius-sm);transition:background var(--transition);background:none;border:none}
+    .hamburger:hover{background:var(--gray-100)}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--gray-700);border-radius:2px;transition:transform var(--transition),opacity var(--transition)}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-nav{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity var(--transition)}
+    .mobile-nav.open{opacity:1}
+    .mobile-nav-panel{position:absolute;top:0;right:0;width:min(320px,90vw);height:100%;background:var(--white);padding:24px;overflow-y:auto;transform:translateX(100%);transition:transform .3s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-lg)}
+    .mobile-nav.open .mobile-nav-panel{transform:translateX(0)}
+    .mobile-nav-close{display:flex;justify-content:flex-end;margin-bottom:24px}
+    .mobile-nav-close button{font-size:1.4rem;color:var(--gray-700);padding:4px;cursor:pointer;background:none;border:none}
+    .mobile-nav-list li{border-bottom:1px solid var(--gray-200)}
+    .mobile-nav-list a{display:block;padding:14px 4px;font-size:1rem;font-weight:700;color:var(--gray-700)}
+    .mobile-nav-list a:hover{color:var(--nok-green)}
+    .mobile-search{margin-top:24px;display:flex;gap:8px}
+    .mobile-search input{flex:1;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:inherit;font-size:.9rem;outline:none}
+    .mobile-search button{background:var(--nok-green);color:var(--white);padding:10px 16px;border-radius:var(--radius-sm);font-weight:700}
+    .mobile-btn-termin{display:block;margin-top:16px;text-align:center;background:linear-gradient(135deg,var(--nok-green),var(--nok-green-light));color:var(--white);padding:12px 20px;border-radius:24px;font-weight:700}
+
+    /* HERO */
+    #hero{position:relative;height:clamp(420px,60vw,600px);overflow:hidden}
+    .slider-track{display:flex;height:100%;transition:transform .65s cubic-bezier(0.4,0,0.2,1)}
+    .slide{flex:0 0 100%;position:relative;display:flex;align-items:center;overflow:hidden}
+    .slide-1{background:linear-gradient(135deg,#1e5c1e 0%,#2a7d2a 40%,#3a9e3a 70%,#4db84d 100%)}
+    .slide-2{background:linear-gradient(135deg,#1a3a1e 0%,#2c5f30 35%,#3d8042 65%,#4a6741 100%)}
+    .slide-3{background:linear-gradient(135deg,#1a2535 0%,#263545 35%,#1e5c3a 65%,#2a7d4a 100%)}
+    .slide-bg-pattern{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1px);background-size:32px 32px}
+    .slide-deco{position:absolute;right:-60px;top:-60px;width:480px;height:480px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+    .slide-deco-2{position:absolute;right:80px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+    .slide-content{position:relative;z-index:2;padding:0 80px;max-width:720px}
+    .slide-badge{display:inline-block;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.25);margin-bottom:20px;backdrop-filter:blur(4px)}
+    .slide h1,.slide h2{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,0.2)}
+    .slide p{font-size:clamp(.95rem,1.8vw,1.15rem);color:rgba(255,255,255,.88);margin-bottom:32px;line-height:1.65;max-width:520px}
+    .slide-actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-slide-primary{background:var(--white);color:var(--nok-green-dark);padding:13px 28px;border-radius:28px;font-weight:700;font-size:.95rem;transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+    .btn-slide-primary:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.2);color:var(--nok-green-dark)}
+    .btn-slide-secondary{background:rgba(255,255,255,.15);color:var(--white);padding:13px 28px;border-radius:28px;font-weight:700;font-size:.95rem;border:1.5px solid rgba(255,255,255,.4);transition:background var(--transition),transform var(--transition);backdrop-filter:blur(4px)}
+    .btn-slide-secondary:hover{background:rgba(255,255,255,.25);transform:translateY(-3px);color:var(--white)}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.35);color:var(--white);width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(4px);transition:background var(--transition),transform var(--transition);font-size:1.1rem}
+    .slider-btn:hover{background:rgba(255,255,255,.28);transform:translateY(-50%) scale(1.08)}
+    .slider-btn.prev{left:24px}
+    .slider-btn.next{right:24px}
+    .slider-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:background var(--transition),width var(--transition);border:none}
+    .dot.active{background:var(--white);width:24px;border-radius:4px}
+
+    /* IHR ANLIEGEN */
+    #ihr-anliegen{padding:72px 0 64px;background:var(--white)}
+    .anliegen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .anliegen-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 18px 24px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius-lg);cursor:pointer;text-decoration:none;color:var(--text-primary);transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);position:relative;overflow:hidden}
+    .anliegen-tile::before{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--nok-green);transition:width var(--transition)}
+    .anliegen-tile:hover::before{width:100%}
+    .anliegen-tile:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:rgba(42,125,42,.2);color:var(--text-primary)}
+    .anliegen-icon{font-size:2.2rem;margin-bottom:12px;display:block;transition:transform var(--transition)}
+    .anliegen-tile:hover .anliegen-icon{transform:scale(1.12)}
+    .anliegen-name{font-size:.9rem;font-weight:700;color:var(--text-primary);line-height:1.3;margin-bottom:4px}
+    .anliegen-sub{font-size:.75rem;color:var(--gray-500);line-height:1.4}
+    .anliegen-arrow{margin-top:10px;font-size:.75rem;color:var(--nok-green);font-weight:700;opacity:0;transition:opacity var(--transition),transform var(--transition)}
+    .anliegen-tile:hover .anliegen-arrow{opacity:1;transform:translateX(4px)}
+
+    /* DIGITAL SERVICES */
+    #digital-services{padding:72px 0 64px;background:linear-gradient(180deg,var(--gray-50) 0%,var(--white) 100%)}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
+    .service-card{background:var(--white);border-radius:var(--radius-lg);padding:28px 24px;border:1.5px solid var(--gray-200);box-shadow:var(--shadow-sm);transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .service-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--nok-green),var(--nok-green-light));transform:scaleX(0);transform-origin:left;transition:transform var(--transition)}
+    .service-card:hover::after{transform:scaleX(1)}
+    .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-color:rgba(42,125,42,.15)}
+    .service-card-icon{font-size:2.4rem;margin-bottom:16px;display:block}
+    .service-card-title{font-size:1.05rem;font-weight:900;color:var(--text-primary);margin-bottom:8px}
+    .service-card-desc{font-size:.88rem;color:var(--text-secondary);margin-bottom:20px;flex:1;line-height:1.6}
+    .service-card-badge{display:inline-flex;align-items:center;gap:4px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--nok-green-xlight);color:var(--nok-green-dark);padding:3px 10px;border-radius:12px;margin-bottom:14px}
+    .btn-service{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--nok-green),var(--nok-green-light));color:var(--white);padding:10px 20px;border-radius:22px;font-size:.85rem;font-weight:700;transition:transform var(--transition),box-shadow var(--transition);align-self:flex-start;box-shadow:0 2px 8px rgba(42,125,42,.25)}
+    .btn-service:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(42,125,42,.35);color:var(--white)}
+    .all-services-link{display:block;text-align:center;font-weight:700;color:var(--nok-green);font-size:1rem;transition:letter-spacing var(--transition)}
+    .all-services-link:hover{letter-spacing:.02em}
+
+    /* NEWS */
+    #aktuelles{padding:72px 0 64px;background:var(--white)}
+    .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+    .news-card{background:var(--white);border-radius:var(--radius-lg);border:1.5px solid var(--gray-200);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--transition),box-shadow var(--transition);display:flex;flex-direction:column}
+    .news-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .news-card-img{height:180px;position:relative;overflow:hidden}
+    .news-img-1{background:linear-gradient(135deg,#2a7d2a 0%,#4db84d 100%)}
+    .news-img-2{background:linear-gradient(135deg,#1a5c3a 0%,#2a7d5a 100%)}
+    .news-img-3{background:linear-gradient(135deg,#1e3a5c 0%,#2a5c7d 100%)}
+    .news-img-pattern{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.1) 1px,transparent 1px);background-size:20px 20px}
+    .news-img-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.5rem;opacity:.3}
+    .news-card-body{padding:22px 22px 18px;display:flex;flex-direction:column;flex:1}
+    .news-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .news-tag{background:var(--nok-green-xlight);color:var(--nok-green-dark);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:12px}
+    .news-date{font-size:.78rem;color:var(--gray-500)}
+    .news-title{font-size:1.05rem;font-weight:700;color:var(--text-primary);margin-bottom:10px;line-height:1.4}
+    .news-teaser{font-size:.87rem;color:var(--text-secondary);line-height:1.6;flex:1;margin-bottom:18px}
+    .news-read-more{display:inline-flex;align-items:center;gap:5px;font-size:.85rem;font-weight:700;color:var(--nok-green);transition:gap var(--transition)}
+    .news-read-more:hover{gap:9px}
+    .news-actions{text-align:center}
+    .btn-outline-green{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--nok-green);color:var(--nok-green);padding:12px 28px;border-radius:28px;font-weight:700;font-size:.95rem;transition:background var(--transition),color var(--transition),transform var(--transition)}
+    .btn-outline-green:hover{background:var(--nok-green);color:var(--white);transform:translateY(-2px)}
+
+    /* SOCIAL MEDIA */
+    #social-media{padding:72px 0 64px;background:var(--nok-green-xlight)}
+    .social-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start}
+    .fb-posts{display:flex;flex-direction:column;gap:16px}
+    .fb-post{background:var(--white);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);transition:box-shadow var(--transition)}
+    .fb-post:hover{box-shadow:var(--shadow-md)}
+    .fb-post-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .fb-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--nok-green),var(--nok-green-light));display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:900;font-size:.85rem;flex-shrink:0}
+    .fb-post-meta strong{display:block;font-size:.88rem;font-weight:700;color:var(--text-primary)}
+    .fb-post-meta span{font-size:.78rem;color:var(--gray-500)}
+    .fb-post-text{font-size:.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:14px}
+    .fb-post-actions{display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--gray-100)}
+    .fb-action{display:flex;align-items:center;gap:5px;font-size:.8rem;color:var(--gray-500);cursor:pointer;transition:color var(--transition)}
+    .fb-action:hover{color:var(--nok-green)}
+    .social-cta{background:var(--white);border-radius:var(--radius-lg);padding:36px 32px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);text-align:center;position:sticky;top:calc(var(--header-height) + 24px)}
+    .fb-logo-big{width:64px;height:64px;margin:0 auto 20px;background:#1877f2;border-radius:16px;display:flex;align-items:center;justify-content:center}
+    .fb-logo-big svg{width:40px;height:40px;fill:white}
+    .social-cta h3{font-size:1.3rem;font-weight:900;color:var(--text-primary);margin-bottom:8px}
+    .social-cta p{font-size:.88rem;color:var(--text-secondary);margin-bottom:24px;line-height:1.6}
+    .follower-count{display:flex;align-items:center;justify-content:center;gap:20px;background:var(--gray-50);border-radius:var(--radius-md);padding:14px;margin-bottom:24px;border:1px solid var(--gray-200)}
+    .follower-stat{text-align:center}
+    .follower-stat strong{display:block;font-size:1.4rem;font-weight:900;color:var(--nok-green)}
+    .follower-stat span{font-size:.75rem;color:var(--gray-500)}
+    .follower-divider{width:1px;height:36px;background:var(--gray-200)}
+    .btn-fb-follow{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#1877f2;color:var(--white);padding:13px 24px;border-radius:24px;font-weight:700;font-size:.95rem;transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 4px 14px rgba(24,119,242,0.3);margin-bottom:14px;border:none;cursor:pointer;font-family:inherit;text-decoration:none}
+    .btn-fb-follow:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(24,119,242,0.4);color:var(--white)}
+    .dsgvo-note{font-size:.72rem;color:var(--gray-500);line-height:1.5}
+
+    /* FOOTER */
+    #footer{background:#0f1f0f;color:rgba(255,255,255,.75);padding:56px 0 0}
+    .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:48px}
+    .footer-col h4{font-size:.9rem;font-weight:900;color:var(--white);text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--nok-green);display:inline-block}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:9px}
+    .footer-col ul li a{color:rgba(255,255,255,.65);font-size:.87rem;transition:color var(--transition),padding-left var(--transition);display:inline-block}
+    .footer-col ul li a:hover{color:#3a9e3a;padding-left:4px}
+    .footer-social-area{padding-top:32px;border-top:1px solid rgba(255,255,255,.1);margin-bottom:24px}
+    .footer-social{display:flex;align-items:center;gap:12px}
+    .footer-social span{font-size:.85rem;color:rgba(255,255,255,.6)}
+    .footer-social-icon{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background var(--transition)}
+    .footer-social-icon:hover{background:rgba(255,255,255,.18)}
+    .footer-social-icon svg{width:18px;height:18px;fill:rgba(255,255,255,.75)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .footer-copyright{font-size:.82rem;color:rgba(255,255,255,.45)}
+    .footer-legal{display:flex;gap:20px}
+    .footer-legal a{font-size:.82rem;color:rgba(255,255,255,.5);transition:color var(--transition)}
+    .footer-legal a:hover{color:rgba(255,255,255,.85)}
+
+    /* UTILITIES */
+    .skip-link{position:absolute;top:-100%;left:16px;background:var(--nok-green);color:var(--white);padding:10px 20px;border-radius:0 0 var(--radius-sm) var(--radius-sm);font-weight:700;z-index:9999;transition:top .2s}
+    .skip-link:focus{top:0}
+    #scroll-top{position:fixed;bottom:28px;right:28px;width:48px;height:48px;background:var(--nok-green);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:var(--shadow-md);opacity:0;transform:translateY(12px);transition:opacity var(--transition),transform var(--transition);border:none;font-size:1.1rem}
+    #scroll-top.visible{opacity:1;transform:translateY(0)}
+    #scroll-top:hover{background:var(--nok-green-dark);transform:translateY(-3px)}
+
+    @media(max-width:1024px){
+      .anliegen-grid{grid-template-columns:repeat(3,1fr)}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .nav-link{padding:8px 10px;font-size:.85rem}
+      .search-input{width:130px}
+    }
+    @media(max-width:768px){
+      .main-nav,.header-actions{display:none}
+      .hamburger{display:flex}
+      .mobile-nav{display:block;pointer-events:none}
+      .mobile-nav.open{pointer-events:all}
+      .anliegen-grid{grid-template-columns:repeat(2,1fr)}
+      .services-grid{grid-template-columns:1fr}
+      .news-grid{grid-template-columns:1fr}
+      .social-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:repeat(2,1fr)}
+      .slide-content{padding:0 48px}
+      .top-bar-left{display:none}
+    }
+    @media(max-width:480px){
+      .anliegen-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+      .footer-grid{grid-template-columns:1fr}
+      .slide-content{padding:0 24px}
+      .slider-btn{width:38px;height:38px}
+      .footer-bottom{flex-direction:column;text-align:center}
+      .footer-legal{flex-wrap:wrap;justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+<!-- TOP BAR -->
+<div id="top-bar" role="banner">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <a href="#" aria-label="Barrierefreiheitserklaerung">&#9855; Barrierefreiheit</a>
+        <span class="top-bar-divider">|</span>
+        <a href="#" aria-label="Leichte Sprache">&#128083; Leichte Sprache</a>
+        <span class="top-bar-divider">|</span>
+        <a href="#" aria-label="Gebaerdensprache">&#128066; Geb&auml;rdensprache</a>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="NOK auf Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="site-logo" aria-label="Landratsamt Neckar-Odenwald-Kreis Startseite">
+        <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="52" height="52" rx="10" fill="#2a7d2a"/>
+          <rect x="2" y="2" width="48" height="48" rx="8" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <path d="M10 36V16l10 14V16M30 16v20M30 16l12 20V16" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="10" y="42" width="32" height="3" rx="1.5" fill="rgba(255,255,255,0.25)"/>
+        </svg>
+        <div class="logo-text-block">
+          <span class="logo-nok">NOK</span>
+          <span class="logo-sub">Neckar-Odenwald-Kreis</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <ul class="nav-list" role="list">
+          <li class="nav-item">
+            <a href="#ihr-anliegen" class="nav-link active" aria-haspopup="true" aria-expanded="false" id="nav-anliegen">
+              Ihr Anliegen <span class="chevron" aria-hidden="true">&#9660;</span>
+            </a>
+            <div class="dropdown" role="menu" aria-labelledby="nav-anliegen">
+              <div class="dropdown-grid">
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128663;</span><span class="dropdown-item-text">Auto &amp; Verkehr</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#127968;</span><span class="dropdown-item-text">Wohnen &amp; Bauen</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128118;</span><span class="dropdown-item-text">Familie &amp; Kinder</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#127891;</span><span class="dropdown-item-text">Bildung &amp; Ausbildung</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128188;</span><span class="dropdown-item-text">Arbeit &amp; Soziales</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#9855;</span><span class="dropdown-item-text">Behinderung &amp; Pflege</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#127807;</span><span class="dropdown-item-text">Umwelt &amp; Natur</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#9878;</span><span class="dropdown-item-text">B&uuml;rger &amp; Recht</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128062;</span><span class="dropdown-item-text">Tiere &amp; Lebensmittel</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128371;</span><span class="dropdown-item-text">Wahlen &amp; Politik</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128203;</span><span class="dropdown-item-text">Formulare &amp; Downloads</span></a>
+                <a class="dropdown-item" href="#" role="menuitem"><span class="dropdown-item-icon">&#128222;</span><span class="dropdown-item-text">Kontakt &amp; &Ouml;ffnungszeiten</span></a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item"><a href="#digital-services" class="nav-link">Digital &amp; Service</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Landkreis</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Politik &amp; Verwaltung</a></li>
+          <li class="nav-item"><a href="#aktuelles" class="nav-link">Aktuelles</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <form class="search-form" action="/suche" method="get" role="search" aria-label="Websitesuche">
+          <input type="search" id="search-input" name="q" class="search-input" placeholder="Suche&#8230;" autocomplete="off" aria-label="Suche" />
+          <button type="submit" class="search-btn" aria-label="Suche starten">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <a href="#" class="btn-termin" aria-label="Online Termin vereinbaren">&#128197; Termin buchen</a>
+      </div>
+
+      <button class="hamburger" id="hamburger-btn" aria-label="Men&uuml; &ouml;ffnen" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-close"><button id="mobile-nav-close" aria-label="Men&uuml; schlie&szlig;en">&#10005;</button></div>
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="#ihr-anliegen">Ihr Anliegen</a></li>
+      <li><a href="#digital-services">Digital &amp; Service</a></li>
+      <li><a href="#">Landkreis</a></li>
+      <li><a href="#">Politik &amp; Verwaltung</a></li>
+      <li><a href="#aktuelles">Aktuelles</a></li>
+    </ul>
+    <div class="mobile-search">
+      <input type="search" placeholder="Suche&#8230;" aria-label="Suche" />
+      <button aria-label="Suche starten">&#128269;</button>
+    </div>
+    <a href="#" class="mobile-btn-termin">&#128197; Termin buchen</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+<!-- HERO SLIDER -->
+<section id="hero" aria-label="Willkommensbanner">
+  <div class="slider-track" id="slider-track" aria-live="polite">
+    <div class="slide slide-1" role="group" aria-label="Folie 1 von 3">
+      <div class="slide-bg-pattern" aria-hidden="true"></div>
+      <div class="slide-deco" aria-hidden="true"></div>
+      <div class="slide-deco-2" aria-hidden="true"></div>
+      <div class="slide-content">
+        <span class="slide-badge">Ihr Landratsamt</span>
+        <h1>Willkommen beim Landratsamt<br>Neckar-Odenwald-Kreis</h1>
+        <p>Hier finden Sie alle Leistungen und Services Ihrer Kreisverwaltung &ndash; modern, digital und b&uuml;rgerfreundlich.</p>
+        <div class="slide-actions">
+          <a href="#ihr-anliegen" class="btn-slide-primary">Mein Anliegen finden</a>
+          <a href="#digital-services" class="btn-slide-secondary">Online-Services</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-2" role="group" aria-label="Folie 2 von 3">
+      <div class="slide-bg-pattern" aria-hidden="true"></div>
+      <div class="slide-deco" aria-hidden="true"></div>
+      <div class="slide-deco-2" aria-hidden="true"></div>
+      <div class="slide-content">
+        <span class="slide-badge">Digitale Verwaltung</span>
+        <h2>Ihre Anliegen &ndash; einfach und<br>schnell online erledigen</h2>
+        <p>Von der KFZ-Zulassung bis zum Wohngeldantrag: Viele Leistungen sind rund um die Uhr digital verf&uuml;gbar.</p>
+        <div class="slide-actions">
+          <a href="#digital-services" class="btn-slide-primary">Zu den Online-Services</a>
+          <a href="#" class="btn-slide-secondary">Termin vereinbaren</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-3" role="group" aria-label="Folie 3 von 3">
+      <div class="slide-bg-pattern" aria-hidden="true"></div>
+      <div class="slide-deco" aria-hidden="true"></div>
+      <div class="slide-deco-2" aria-hidden="true"></div>
+      <div class="slide-content">
+        <span class="slide-badge">Aktuell &amp; Regional</span>
+        <h2>Aktuelle Themen aus<br>dem Landkreis</h2>
+        <p>Bleiben Sie informiert &uuml;ber wichtige Neuigkeiten, Projekte und Entscheidungen im Neckar-Odenwald-Kreis.</p>
+        <div class="slide-actions">
+          <a href="#aktuelles" class="btn-slide-primary">Alle Neuigkeiten</a>
+          <a href="#social-media" class="btn-slide-secondary">Auf Facebook folgen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="slider-btn prev" id="slider-prev" aria-label="Vorherige Folie">&#8592;</button>
+  <button class="slider-btn next" id="slider-next" aria-label="N&auml;chste Folie">&#8594;</button>
+  <div class="slider-dots" role="tablist" aria-label="Folien-Navigation">
+    <button class="dot active" role="tab" aria-selected="true" aria-label="Folie 1"></button>
+    <button class="dot" role="tab" aria-selected="false" aria-label="Folie 2"></button>
+    <button class="dot" role="tab" aria-selected="false" aria-label="Folie 3"></button>
+  </div>
+</section>
+
+<!-- IHR ANLIEGEN -->
+<section id="ihr-anliegen" aria-labelledby="anliegen-title">
+  <div class="container">
+    <div class="section-header text-center fade-up">
+      <h2 class="section-title" id="anliegen-title">Was m&ouml;chten Sie erledigen?</h2>
+      <p class="section-subtitle">W&auml;hlen Sie Ihr Thema &ndash; wir zeigen Ihnen den direkten Weg zum richtigen Service.</p>
+    </div>
+    <div class="anliegen-grid" role="list">
+      <a href="#" class="anliegen-tile fade-up" role="listitem" aria-label="Auto und Verkehr"><span class="anliegen-icon">&#128663;</span><span class="anliegen-name">Auto &amp; Verkehr</span><span class="anliegen-sub">KFZ-Zulassung &middot; F&uuml;hrerschein &middot; &Ouml;PNV</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-1" role="listitem" aria-label="Wohnen und Bauen"><span class="anliegen-icon">&#127968;</span><span class="anliegen-name">Wohnen &amp; Bauen</span><span class="anliegen-sub">Bauantrag &middot; Wohnraumf&ouml;rderung &middot; Wohngeld</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-2" role="listitem" aria-label="Familie und Kinder"><span class="anliegen-icon">&#128118;</span><span class="anliegen-name">Familie &amp; Kinder</span><span class="anliegen-sub">Unterhaltsvorschuss &middot; Jugendamt &middot; Kita</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-3" role="listitem" aria-label="Bildung und Ausbildung"><span class="anliegen-icon">&#127891;</span><span class="anliegen-name">Bildung &amp; Ausbildung</span><span class="anliegen-sub">Schulen &middot; Ausbildung beim LRA</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up" role="listitem" aria-label="Arbeit und Soziales"><span class="anliegen-icon">&#128188;</span><span class="anliegen-name">Arbeit &amp; Soziales</span><span class="anliegen-sub">Jobcenter &middot; Sozialhilfe &middot; ESF</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-1" role="listitem" aria-label="Behinderung und Pflege"><span class="anliegen-icon">&#9855;</span><span class="anliegen-name">Behinderung &amp; Pflege</span><span class="anliegen-sub">Schwerbehindertenausweis &middot; Eingliederungshilfe</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-2" role="listitem" aria-label="Umwelt und Natur"><span class="anliegen-icon">&#127807;</span><span class="anliegen-name">Umwelt &amp; Natur</span><span class="anliegen-sub">Abfall &middot; Naturschutz &middot; Recycling</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-3" role="listitem" aria-label="Buerger und Recht"><span class="anliegen-icon">&#9878;</span><span class="anliegen-name">B&uuml;rger &amp; Recht</span><span class="anliegen-sub">Ordnung &middot; Migration &middot; Waffenrecht</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up" role="listitem" aria-label="Tiere und Lebensmittel"><span class="anliegen-icon">&#128062;</span><span class="anliegen-name">Tiere &amp; Lebensmittel</span><span class="anliegen-sub">Veterin&auml;ramt &middot; Tierschutz</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-1" role="listitem" aria-label="Wahlen und Politik"><span class="anliegen-icon">&#128371;</span><span class="anliegen-name">Wahlen &amp; Politik</span><span class="anliegen-sub">Kreistag &middot; Wahlen &middot; Abgeordnete</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-2" role="listitem" aria-label="Formulare und Downloads"><span class="anliegen-icon">&#128203;</span><span class="anliegen-name">Formulare &amp; Downloads</span><span class="anliegen-sub">Alle Formulare im &Uuml;berblick</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+      <a href="#" class="anliegen-tile fade-up fade-up-delay-3" role="listitem" aria-label="Kontakt und Oeffnungszeiten"><span class="anliegen-icon">&#128222;</span><span class="anliegen-name">Kontakt &amp; &Ouml;ffnungszeiten</span><span class="anliegen-sub">Adressen &middot; Zeiten &middot; Termin</span><span class="anliegen-arrow">Mehr &rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL SERVICES -->
+<section id="digital-services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title" id="services-title">Online-Services &ndash; Direkt zum Ziel</h2>
+      <p class="section-subtitle">Diese Anliegen k&ouml;nnen Sie vollst&auml;ndig online erledigen &ndash; bequem, schnell und sicher.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card fade-up">
+        <span class="service-card-icon">&#128665;</span>
+        <span class="service-card-badge">&#10003; Vollst&auml;ndig online</span>
+        <h3 class="service-card-title">KFZ-Zulassung online (i-Kfz)</h3>
+        <p class="service-card-desc">Fahrzeug bequem online zu- und abmelden &ndash; ohne Wartezeit beim Amt. Rund um die Uhr verf&uuml;gbar.</p>
+        <a href="#" class="btn-service">Zum Service &rarr;</a>
+      </article>
+      <article class="service-card fade-up fade-up-delay-1">
+        <span class="service-card-icon">&#128197;</span>
+        <span class="service-card-badge">&#10003; Online verf&uuml;gbar</span>
+        <h3 class="service-card-title">Termin buchen</h3>
+        <p class="service-card-desc">Online-Terminvereinbarung f&uuml;r alle B&uuml;rgerservices &ndash; w&auml;hlen Sie Datum, Uhrzeit und Anliegen.</p>
+        <a href="#" class="btn-service">Zum Service &rarr;</a>
+      </article>
+      <article class="service-card fade-up fade-up-delay-2">
+        <span class="service-card-icon">&#127963;</span>
+        <span class="service-card-badge">&#10003; Extern verkn&uuml;pft</span>
+        <h3 class="service-card-title">KFZ-Online (mein-check-in.de)</h3>
+        <p class="service-card-desc">Direkter Zugang zum bundesweiten KFZ-Online-Portal f&uuml;r Zulassung, Ummeldung und Abmeldung.</p>
+        <a href="https://www.mein-check-in.de" target="_blank" rel="noopener noreferrer" class="btn-service">Zum Service &rarr;</a>
+      </article>
+      <article class="service-card fade-up">
+        <span class="service-card-icon">&#128176;</span>
+        <span class="service-card-badge">&#10003; Vollst&auml;ndig online</span>
+        <h3 class="service-card-title">Wohngeld beantragen</h3>
+        <p class="service-card-desc">Stellen Sie Ihren Wohngeldantrag direkt online. Dokumente hochladen und Antrag vollst&auml;ndig digital einreichen.</p>
+        <a href="#" class="btn-service">Zum Service &rarr;</a>
+      </article>
+      <article class="service-card fade-up fade-up-delay-1">
+        <span class="service-card-icon">&#9855;</span>
+        <span class="service-card-badge">&#10003; Vollst&auml;ndig online</span>
+        <h3 class="service-card-title">Schwerbehindertenausweis</h3>
+        <p class="service-card-desc">Beantragen Sie den Schwerbehindertenausweis oder stellen Sie einen &Auml;nderungsantrag bequem online.</p>
+        <a href="#" class="btn-service">Zum Service &rarr;</a>
+      </article>
+      <article class="service-card fade-up fade-up-delay-2">
+        <span class="service-card-icon">&#128506;</span>
+        <span class="service-card-badge">&#10003; Online verf&uuml;gbar</span>
+        <h3 class="service-card-title">NOKmaps GIS</h3>
+        <p class="service-card-desc">Das Geoinformationssystem des Neckar-Odenwald-Kreises &ndash; Karten, Geodaten und Rauminformationen.</p>
+        <a href="#" class="btn-service">Zum Service &rarr;</a>
+      </article>
+    </div>
+    <div class="text-center fade-up">
+      <a href="#" class="all-services-link">Alle digitalen Services anzeigen &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="aktuelles" aria-labelledby="news-title">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-title" id="news-title">Aktuelles aus dem Neckar-Odenwald-Kreis</h2>
+      <p class="section-subtitle">Neuigkeiten, Projekte und Entscheidungen aus Ihrer Kreisverwaltung.</p>
+    </div>
+    <div class="news-grid">
+      <article class="news-card fade-up">
+        <div class="news-card-img news-img-1"><div class="news-img-pattern" aria-hidden="true"></div><div class="news-img-icon" aria-hidden="true">&#127963;</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-tag">B&uuml;rgerservice</span><time class="news-date" datetime="2026-08-28">28. August 2026</time></div>
+          <h3 class="news-title">Neues Online-Portal f&uuml;r KFZ-Zulassungen ab September verf&uuml;gbar</h3>
+          <p class="news-teaser">Das Landratsamt Neckar-Odenwald-Kreis erweitert seine digitalen Services: Ab September k&ouml;nnen B&uuml;rgerinnen und B&uuml;rger ihre Fahrzeuge vollst&auml;ndig online zulassen und abmelden.</p>
+          <a href="#" class="news-read-more">Mehr lesen &rarr;</a>
+        </div>
+      </article>
+      <article class="news-card fade-up fade-up-delay-1">
+        <div class="news-card-img news-img-2"><div class="news-img-pattern" aria-hidden="true"></div><div class="news-img-icon" aria-hidden="true">&#127807;</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-tag">Umwelt</span><time class="news-date" datetime="2026-08-22">22. August 2026</time></div>
+          <h3 class="news-title">Neue Recyclinghoefe im Kreis: Erweiterte &Ouml;ffnungszeiten ab Herbst</h3>
+          <p class="news-teaser">Der Landkreis investiert in die Abfallentsorgungsinfrastruktur: Drei Recyclinghoefe erhalten modernisierte Anlagen und deutlich erweiterte &Ouml;ffnungszeiten.</p>
+          <a href="#" class="news-read-more">Mehr lesen &rarr;</a>
+        </div>
+      </article>
+      <article class="news-card fade-up fade-up-delay-2">
+        <div class="news-card-img news-img-3"><div class="news-img-pattern" aria-hidden="true"></div><div class="news-img-icon" aria-hidden="true">&#128106;</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-tag">Soziales</span><time class="news-date" datetime="2026-08-15">15. August 2026</time></div>
+          <h3 class="news-title">Familienst&uuml;tzpunkte: F&ouml;rderprogramm wird bis 2028 verl&auml;ngert</h3>
+          <p class="news-teaser">Der Kreistag hat beschlossen, das erfolgreiche F&ouml;rderprogramm f&uuml;r Familienst&uuml;tzpunkte im Neckar-Odenwald-Kreis um weitere zwei Jahre zu verl&auml;ngern.</p>
+          <a href="#" class="news-read-more">Mehr lesen &rarr;</a>
+        </div>
+      </article>
+    </div>
+    <div class="news-actions fade-up text-center">
+      <a href="#" class="btn-outline-green">Alle Nachrichten</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+<section id="social-media" aria-labelledby="social-title">
+  <div class="container">
+    <div class="section-header text-center fade-up">
+      <h2 class="section-title" id="social-title">Folgen Sie uns &ndash; Bleiben Sie informiert</h2>
+      <p class="section-subtitle">Aktuelle Neuigkeiten, Veranstaltungen und Informationen direkt auf Ihrem Feed.</p>
+    </div>
+    <div class="social-grid">
+      <div class="fb-posts">
+        <article class="fb-post fade-up">
+          <div class="fb-post-header">
+            <div class="fb-avatar" aria-hidden="true">NOK</div>
+            <div class="fb-post-meta"><strong>Landratsamt Neckar-Odenwald-Kreis</strong><span>&#128197; 27. August 2026 &middot; &#127760;</span></div>
+          </div>
+          <p class="fb-post-text">&#128665; <strong>Ab Oktober: KFZ-Zulassung vollst&auml;ndig online m&ouml;glich!</strong><br><br>Gute Nachrichten f&uuml;r alle Autofahrerinnen und Autofahrer im Neckar-Odenwald-Kreis: Ab Oktober 2026 k&ouml;nnen Sie Ihr Fahrzeug bequem von zu Hause aus online zu- oder abmelden. Kein Besuch beim Amt notwendig! &#127881;</p>
+          <div class="fb-post-actions">
+            <span class="fb-action">&#128077; Gef&auml;llt mir &middot; 147</span>
+            <span class="fb-action">&#128172; Kommentieren &middot; 22</span>
+          </div>
+        </article>
+        <article class="fb-post fade-up fade-up-delay-1">
+          <div class="fb-post-header">
+            <div class="fb-avatar" aria-hidden="true">NOK</div>
+            <div class="fb-post-meta"><strong>Landratsamt Neckar-Odenwald-Kreis</strong><span>&#128197; 20. August 2026 &middot; &#127760;</span></div>
+          </div>
+          <p class="fb-post-text">&#127807; <strong>Sauberer Kreis &ndash; Gemeinsam Verantwortung tragen!</strong><br><br>Unser Abfallwirtschaftsbetrieb weist auf die neuen &Ouml;ffnungszeiten der Recyclingh&ouml;fe hin. Ab 1. Oktober haben alle drei Standorte auch samstags bis 17:00 Uhr ge&ouml;ffnet.</p>
+          <div class="fb-post-actions">
+            <span class="fb-action">&#128077; Gef&auml;llt mir &middot; 89</span>
+            <span class="fb-action">&#128172; Kommentieren &middot; 11</span>
+          </div>
+        </article>
+        <article class="fb-post fade-up fade-up-delay-2">
+          <div class="fb-post-header">
+            <div class="fb-avatar" aria-hidden="true">NOK</div>
+            <div class="fb-post-meta"><strong>Landratsamt Neckar-Odenwald-Kreis</strong><span>&#128197; 12. August 2026 &middot; &#127760;</span></div>
+          </div>
+          <p class="fb-post-text">&#128106; <strong>Familienst&uuml;tzpunkte &ndash; Verl&auml;ngerung des F&ouml;rderprogramms beschlossen!</strong><br><br>Der Kreistag hat in seiner gestrigen Sitzung einstimmig f&uuml;r die Verl&auml;ngerung des bew&auml;hrten Programms bis 2028 gestimmt. Rund 4.800 Familien wurden in 2025 unterst&uuml;tzt. &#128154;</p>
+          <div class="fb-post-actions">
+            <span class="fb-action">&#128077; Gef&auml;llt mir &middot; 213</span>
+            <span class="fb-action">&#128172; Kommentieren &middot; 37</span>
+          </div>
+        </article>
+      </div>
+      <div class="social-cta fade-up fade-up-delay-1">
+        <div class="fb-logo-big" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <h3>Wir sind auf Facebook</h3>
+        <p>Folgen Sie der offiziellen Facebook-Seite des Landratsamtes Neckar-Odenwald-Kreis und verpassen Sie keine Neuigkeiten aus Ihrer Region.</p>
+        <div class="follower-count">
+          <div class="follower-stat"><strong>6.300+</strong><span>Gef&auml;llt mir</span></div>
+          <div class="follower-divider" aria-hidden="true"></div>
+          <div class="follower-stat"><strong>6.800+</strong><span>Follower</span></div>
+        </div>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="btn-fb-follow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Jetzt folgen
+        </a>
+        <p class="dsgvo-note"><strong>Datenschutzhinweis:</strong> Mit Klick auf &bdquo;Jetzt folgen&ldquo; verlassen Sie unsere Website und stimmen den Nutzungsbedingungen von Facebook (Meta Platforms Ireland Ltd.) zu. Weitere Infos in unserer <a href="#">Datenschutzerkl&auml;rung</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>&Uuml;ber den Landkreis</h4>
+        <ul>
+          <li><a href="#">Portrait des Landkreises</a></li>
+          <li><a href="#">Geschichte</a></li>
+          <li><a href="#">St&auml;dte &amp; Gemeinden</a></li>
+          <li><a href="#">Tourismus &amp; Freizeit</a></li>
+          <li><a href="#">Wirtschaft &amp; Standort</a></li>
+          <li><a href="#">Partnerschaften</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service &amp; Online</h4>
+        <ul>
+          <li><a href="#">KFZ-Zulassung online</a></li>
+          <li><a href="#">Termin buchen</a></li>
+          <li><a href="#">Alle Online-Services</a></li>
+          <li><a href="#">Formulare &amp; Downloads</a></li>
+          <li><a href="#">NOKmaps GIS</a></li>
+          <li><a href="#">Stellenausschreibungen</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>B&uuml;rgerbeteiligung</h4>
+        <ul>
+          <li><a href="#">Kreistag</a></li>
+          <li><a href="#">Petitionen</a></li>
+          <li><a href="#">B&uuml;rgersprechstunde</a></li>
+          <li><a href="#">Wahlen</a></li>
+          <li><a href="#">Ehrenamt</a></li>
+          <li><a href="#">B&uuml;rgerhaushalt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="#">Kontaktformular</a></li>
+          <li><a href="#">Telefon-Verzeichnis</a></li>
+          <li><a href="#">&Ouml;ffnungszeiten</a></li>
+          <li><a href="#">Anfahrt &amp; Parken</a></li>
+          <li><a href="#">Pressestelle</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social-area">
+      <div class="footer-social">
+        <span>Folgen Sie uns:</span>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="NOK auf Facebook">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.75)" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copyright">&#169; 2026 Landratsamt Neckar-Odenwald-Kreis</span>
+      <nav class="footer-legal" aria-label="Rechtliche Links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Barrierefreiheit</a>
+        <a href="#">Sitemap</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button id="scroll-top" aria-label="Zurueck nach oben">&#8593;</button>
+
+<script>
+  (function(){
+    var track=document.getElementById('slider-track');
+    var dots=document.querySelectorAll('.dot');
+    var prevBtn=document.getElementById('slider-prev');
+    var nextBtn=document.getElementById('slider-next');
+    var current=0,total=3,autoTimer;
+    function goTo(i){current=(i+total)%total;track.style.transform='translateX(-'+(current*100)+'%)';dots.forEach(function(d,j){d.classList.toggle('active',j===current);d.setAttribute('aria-selected',j===current?'true':'false')});}
+    function startAuto(){clearInterval(autoTimer);autoTimer=setInterval(function(){goTo(current+1);},5000);}
+    prevBtn.addEventListener('click',function(){goTo(current-1);startAuto();});
+    nextBtn.addEventListener('click',function(){goTo(current+1);startAuto();});
+    dots.forEach(function(d,i){d.addEventListener('click',function(){goTo(i);startAuto();});});
+    var hero=document.getElementById('hero'),tX=0;
+    hero.addEventListener('touchstart',function(e){tX=e.changedTouches[0].screenX;},{passive:true});
+    hero.addEventListener('touchend',function(e){var dx=e.changedTouches[0].screenX-tX;if(Math.abs(dx)>40){dx<0?goTo(current+1):goTo(current-1);startAuto();}},{passive:true});
+    hero.addEventListener('mouseenter',function(){clearInterval(autoTimer);});
+    hero.addEventListener('mouseleave',startAuto);
+    goTo(0);startAuto();
+  })();
+  (function(){
+    var header=document.getElementById('site-header');
+    var st=document.getElementById('scroll-top');
+    window.addEventListener('scroll',function(){var y=window.scrollY;header.classList.toggle('scrolled',y>20);st.classList.toggle('visible',y>400);},{passive:true});
+    st.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  })();
+  (function(){
+    var hb=document.getElementById('hamburger-btn');
+    var mn=document.getElementById('mobile-nav');
+    var cl=document.getElementById('mobile-nav-close');
+    function open(){mn.classList.add('open');mn.style.display='block';hb.classList.add('open');hb.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+    function close(){mn.classList.remove('open');hb.classList.remove('open');hb.setAttribute('aria-expanded','false');document.body.style.overflow='';setTimeout(function(){if(!mn.classList.contains('open'))mn.style.display='none';},300);}
+    hb.addEventListener('click',open);cl.addEventListener('click',close);
+    mn.addEventListener('click',function(e){if(e.target===mn)close();});
+    mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  })();
+  (function(){
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+    document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+  })();
+  (function(){
+    document.querySelectorAll('.nav-item').forEach(function(item){
+      var link=item.querySelector('.nav-link');
+      var dd=item.querySelector('.dropdown');
+      if(!dd)return;
+      item.addEventListener('mouseenter',function(){link.setAttribute('aria-expanded','true');});
+      item.addEventListener('mouseleave',function(){link.setAttribute('aria-expanded','false');});
+      link.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();var open=dd.style.opacity==='1';dd.style.opacity=open?'0':'1';dd.style.pointerEvents=open?'none':'all';dd.style.transform=open?'translateY(-8px)':'translateY(0)';link.setAttribute('aria-expanded',(!open).toString());}
+        if(e.key==='Escape'){dd.style.opacity='0';dd.style.pointerEvents='none';link.setAttribute('aria-expanded','false');}
+      });
+    });
+  })();
+</script>
+</body>
+</html>

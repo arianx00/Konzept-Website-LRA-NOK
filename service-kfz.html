@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>KFZ-Zulassung online | Digitales Landratsamt NOK</title>
+
+<link href="https://www.neckar-odenwald-kreis.de/skin/nok2/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://www.neckar-odenwald-kreis.de/skin/nok2/css/lato.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://www.neckar-odenwald-kreis.de/skin/nok2/images/favicon/favicon.ico">
+
+<!-- KERN UX-Standard v2.7.2 | EUPL-1.2 | gitlab.opencode.de/kern-ux -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kern-ux/native@2.7.2/dist/kern.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kern-ux/native@2.7.2/dist/fonts/fira-sans.css">
+
+<style>
+:root {
+    --nok-gruen:  #94c11f;
+    --nok-blau:   #1a7b9b;
+    --nok-dunkel: #303030;
+    --kern-color-primary:           #94c11f;
+    --kern-color-primary-hover:     #7faa19;
+    --kern-color-primary-contrast:  #fff;
+    --kern-color-secondary:         #1a7b9b;
+    --kern-color-secondary-hover:   #145f78;
+    --kern-color-secondary-contrast:#fff;
+    --kern-font-family: 'Fira Sans', Lato, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: 'Fira Sans', Lato, sans-serif; background: #fff; color: #303030; line-height: 1.6; }
+a { color: var(--nok-blau); }
+
+.skip-link { position: absolute; left: -9999px; background: #fff; color: #000; padding: 8px 16px; z-index: 9999; text-decoration: none; font-weight: bold; }
+.skip-link:focus { left: 16px; top: 16px; }
+
+/* ── TOP BAR ── */
+.ds-topbar { background: #303030; display: flex; align-items: center; justify-content: space-between; padding: 6px 24px; font-size: 12px; }
+.ds-topbar a { color: #ccc; text-decoration: none; margin-left: 16px; }
+.ds-topbar a:hover { color: #fff; }
+.ds-topbar__left { color: #aaa; }
+.ds-topbar__left a { color: #94c11f; font-weight: 600; margin-left: 0; }
+
+/* ── HEADER ── */
+.ds-header { background: #fff; border-bottom: 3px solid var(--nok-gruen); position: relative; z-index: 200; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+.ds-header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 72px; }
+.ds-logo img { height: 50px; width: auto; display: block; }
+.ds-search-form { flex: 1; display: flex; max-width: 500px; }
+.ds-search-form input { flex: 1; padding: 10px 16px; font-family: inherit; font-size: 14px; border: 2px solid #ddd; border-right: none; outline: none; }
+.ds-search-form input:focus { border-color: var(--nok-blau); }
+.ds-search-form button { padding: 10px 16px; background: var(--nok-blau); color: #fff; border: 2px solid var(--nok-blau); cursor: pointer; transition: background .15s; }
+.ds-search-form button:hover { background: #145f78; }
+.ds-nav { display: flex; align-items: stretch; height: 100%; flex-shrink: 0; }
+.ds-nav a { display: flex; align-items: center; padding: 0 14px; font-size: 13px; font-weight: 700; color: #303030; text-decoration: none; text-transform: uppercase; letter-spacing: .4px; border-left: 1px solid #eee; transition: background .15s; }
+.ds-nav a:hover { background: #f4f4f4; color: var(--nok-blau); }
+
+/* ── BREADCRUMB ── */
+.ds-breadcrumb { background: #f8f8f8; border-bottom: 1px solid #e8e8e8; }
+.ds-breadcrumb-inner { max-width: 1200px; margin: 0 auto; padding: 10px 24px; font-size: 13px; color: #888; }
+.ds-breadcrumb-inner a { color: var(--nok-blau); text-decoration: none; }
+.ds-breadcrumb-inner a:hover { text-decoration: underline; }
+.ds-breadcrumb-inner span { margin: 0 8px; }
+
+/* ── LAYOUT ── */
+.ds-page { max-width: 1200px; margin: 0 auto; padding: 32px 24px 48px; display: grid; grid-template-columns: 1fr 320px; gap: 40px; }
+.ds-main { min-width: 0; }
+.ds-aside { min-width: 0; }
+
+/* ── SERVICE HEADER ── */
+.ds-service-header { margin-bottom: 24px; }
+.ds-service-header .ds-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.ds-service-header h1 { font-size: 1.8rem; font-weight: 700; margin: 0 0 10px; line-height: 1.2; }
+.ds-service-header .ds-intro { font-size: 1rem; color: #555; margin: 0; }
+
+/* ── PRIMÄRER CTA BUTTON (Dominant, nicht zu übersehen) ── */
+.ds-cta-box {
+    background: linear-gradient(135deg, #f0f8e8 0%, #e8f4e0 100%);
+    border: 2px solid var(--nok-gruen);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+.ds-cta-box__text h2 { font-size: 1.15rem; margin: 0 0 4px; color: #303030; }
+.ds-cta-box__text p  { font-size: 13px; color: #666; margin: 0; }
+.ds-cta-primary {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--nok-gruen); color: #fff;
+    padding: 16px 32px;
+    font-size: 17px; font-weight: 700; font-family: inherit;
+    text-decoration: none; border-radius: 4px;
+    transition: background .2s, transform .1s;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(148,193,31,.35);
+}
+.ds-cta-primary:hover { background: #7faa19; transform: translateY(-2px); color: #fff; }
+.ds-cta-primary i { font-size: 20px; }
+.ds-cta-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--nok-blau); font-size: 14px; font-weight: 600;
+    text-decoration: none; padding: 8px 0; margin-top: 4px;
+}
+.ds-cta-secondary:hover { text-decoration: underline; }
+
+/* ── INFO SECTION ── */
+.ds-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
+.ds-info-box { background: #f8f8f8; border-left: 4px solid var(--nok-gruen); padding: 16px 18px; }
+.ds-info-box h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .8px; color: #888; margin: 0 0 10px; }
+.ds-info-box ul { margin: 0; padding-left: 18px; font-size: 14px; }
+.ds-info-box ul li { margin-bottom: 5px; }
+
+/* ── ACCORDION FAQ ── */
+.ds-section-title { font-size: 1.2rem; font-weight: 700; margin: 32px 0 16px; border-left: 4px solid var(--nok-blau); padding-left: 14px; }
+.kern-accordion {
+    border: 1px solid #e0e0e0; border-radius: 4px;
+    margin-bottom: 6px; overflow: hidden;
+}
+.kern-accordion summary {
+    padding: 14px 18px; cursor: pointer;
+    font-weight: 600; font-size: 15px;
+    background: #f8f8f8; list-style: none;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .12s;
+}
+.kern-accordion summary::-webkit-details-marker { display: none; }
+.kern-accordion summary:hover { background: #f0f0f0; }
+.kern-accordion summary::after { content: "+"; font-size: 22px; color: var(--nok-gruen); line-height: 1; }
+.kern-accordion[open] summary { background: #f0f8e8; border-bottom: 1px solid #d8edba; }
+.kern-accordion[open] summary::after { content: "−"; }
+.kern-accordion__content { padding: 16px 18px; font-size: 14px; line-height: 1.7; color: #444; }
+.kern-accordion__content ul { margin: 8px 0; padding-left: 20px; }
+.kern-accordion__content ul li { margin-bottom: 6px; }
+.kern-accordion__content strong { color: #303030; }
+.kern-accordion__content .kern-badge { font-size: 11px; }
+
+/* ── DOWNLOAD SECTION ── */
+.ds-download-list { list-style: none; padding: 0; margin: 0; }
+.ds-download-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 16px; border: 1px solid #e0e0e0;
+    border-radius: 4px; margin-bottom: 8px;
+    transition: background .1s;
+}
+.ds-download-item:hover { background: #f8f8f8; }
+.ds-download-icon {
+    width: 40px; height: 40px; background: var(--nok-blau);
+    border-radius: 4px; color: #fff; display: flex;
+    align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+}
+.ds-download-icon.pdf { background: #dd0000; }
+.ds-download-info { flex: 1; }
+.ds-download-name { font-size: 14px; font-weight: 600; color: #303030; }
+.ds-download-meta { font-size: 12px; color: #888; margin-top: 2px; }
+.ds-download-link {
+    font-size: 13px; font-weight: 700; color: var(--nok-blau);
+    text-decoration: none; white-space: nowrap;
+}
+.ds-download-link:hover { text-decoration: underline; }
+
+/* ── SIDEBAR ── */
+.ds-aside-box { background: #f8f8f8; border-radius: 4px; padding: 20px; margin-bottom: 20px; }
+.ds-aside-box h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .8px; color: #888; margin: 0 0 14px; }
+.ds-aside-box p, .ds-aside-box a { font-size: 14px; }
+.ds-contact-item { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; font-size: 14px; }
+.ds-contact-item i { color: var(--nok-gruen); margin-top: 2px; flex-shrink: 0; }
+.ds-status-row { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 8px; }
+.ds-status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--nok-gruen); flex-shrink: 0; }
+
+/* KERN Badge */
+.kern-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 2px; font-size: 12px; font-weight: 700; letter-spacing: .3px; }
+.kern-badge--success { background: var(--nok-gruen); color: #fff; }
+.kern-badge--info    { background: var(--nok-blau); color: #fff; }
+.kern-badge--warning { background: #e07b00; color: #fff; }
+
+/* KERN Description List */
+.kern-description-list { margin: 0; }
+.kern-description-list-item { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+.kern-description-list-item:last-child { border-bottom: none; }
+.kern-description-list-item__key { font-weight: 600; color: #555; min-width: 140px; flex-shrink: 0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) { .ds-page { grid-template-columns: 1fr; } .ds-aside { order: -1; } }
+@media (max-width: 700px) {
+    .ds-header-inner { flex-wrap: wrap; height: auto; padding: 12px; gap: 10px; }
+    .ds-search-form { max-width: 100%; order: 3; flex-basis: 100%; }
+    .ds-nav { display: none; }
+    .ds-info-grid { grid-template-columns: 1fr; }
+    .ds-cta-box { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+<!-- ══ TOP BAR ══ -->
+<div class="ds-topbar">
+    <div class="ds-topbar__left">← <a href="service.html">Digitales Landratsamt</a></div>
+    <div>
+        <a href="https://www.neckar-odenwald-kreis.de/Barrierefreiheit.html">Barrierefreiheit</a>
+        <a href="https://www.neckar-odenwald-kreis.de/Datenschutz.html">Datenschutz</a>
+    </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header class="ds-header">
+    <div class="ds-header-inner">
+        <div class="ds-logo">
+            <a href="service.html">
+                <img src="https://www.neckar-odenwald-kreis.de/skin/nok2/images/logo.jpg" alt="NOK – Digitales Landratsamt">
+            </a>
+        </div>
+        <form class="ds-search-form" action="https://www.neckar-odenwald-kreis.de/Suche.html" method="get" role="search" aria-label="Service-Suche">
+            <label for="h-search" style="position:absolute;clip:rect(0,0,0,0)">Service suchen</label>
+            <input id="h-search" type="search" name="search_string" placeholder="Service suchen …" autocomplete="off">
+            <button type="submit" aria-label="Suchen"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+        <nav class="ds-nav" aria-label="Hauptnavigation">
+            <a href="service.html">Service</a>
+            <a href="https://www.neckar-odenwald-kreis.de/Landratsamt.html">Landratsamt</a>
+            <a href="https://www.neckar-odenwald-kreis.de/Aktuelle+Themen.html">Aktuelles</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ══ BREADCRUMB ══ -->
+<nav class="ds-breadcrumb" aria-label="Brotkrümel-Navigation">
+    <div class="ds-breadcrumb-inner">
+        <a href="index.html">Startseite</a>
+        <span aria-hidden="true">›</span>
+        <a href="service.html">Digitales Landratsamt</a>
+        <span aria-hidden="true">›</span>
+        <a href="service.html">Auto &amp; Verkehr</a>
+        <span aria-hidden="true">›</span>
+        <strong>KFZ-Zulassung</strong>
+    </div>
+</nav>
+
+<!-- ══ HAUPTINHALT ══ -->
+<main id="main-content">
+<div class="ds-page">
+
+    <!-- ══════════ LINKE SPALTE: Leistungsinhalt ══════════ -->
+    <article class="ds-main">
+
+        <!-- SERVICE HEADER -->
+        <div class="ds-service-header">
+            <div class="ds-badges">
+                <span class="kern-badge kern-badge--success">
+                    <i class="fa fa-check" aria-hidden="true" style="margin-right:5px;"></i>Online verfügbar
+                </span>
+                <span class="kern-badge kern-badge--info">i-Kfz (bundesweit)</span>
+                <span class="kern-badge kern-badge--warning">Auto &amp; Verkehr</span>
+            </div>
+            <h1>KFZ-Zulassung online beantragen</h1>
+            <p class="ds-intro">
+                Fahrzeuge im Neckar-Odenwald-Kreis online zu- und abmelden — rund um die Uhr,
+                ohne Wartezeit, direkt von zuhause. Das bundesweite <strong>i-Kfz-Verfahren</strong>
+                ermöglicht vollständige Online-Transaktionen für alle Zulassungsvorgänge.
+            </p>
+        </div>
+
+        <!-- PRIMÄRER CTA (dominanter Button) -->
+        <div class="ds-cta-box" aria-labelledby="cta-heading">
+            <div class="ds-cta-box__text">
+                <h2 id="cta-heading">Jetzt online erledigen</h2>
+                <p>Kein Bürotermin nötig · Sicher und verschlüsselt · Verfügbar 24/7</p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-start;">
+                <a href="https://www.neckar-odenwald-kreis.de/Service/Online-Dienste/Online-KFZ-Zulassung.html"
+                   target="_blank" rel="noopener"
+                   class="ds-cta-primary"
+                   aria-describedby="cta-hint">
+                    <i class="fa fa-mouse-pointer" aria-hidden="true"></i>
+                    Jetzt KFZ online zulassen →
+                </a>
+                <span id="cta-hint" style="font-size:12px; color:#666;">
+                    Öffnet das bundesweite i-Kfz-Portal
+                </span>
+                <a href="https://www.mein-check-in.de/neckar-odenwald-kreis/" target="_blank" class="ds-cta-secondary">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    Lieber persönlich? Termin vereinbaren
+                </a>
+            </div>
+        </div>
+
+        <!-- VORAUSSETZUNGEN & FRISTEN INFO-GRID -->
+        <div class="ds-info-grid">
+            <div class="ds-info-box">
+                <h3>Benötigte Unterlagen</h3>
+                <ul>
+                    <li>Personalausweis oder Reisepass</li>
+                    <li>eID-Funktion (Online-Ausweis) aktiviert</li>
+                    <li>Fahrzeugbrief (Zulassungsbescheinigung Teil II)</li>
+                    <li>Fahrzeugschein (Teil I) – bei Ummeldung</li>
+                    <li>HU-Bescheinigung (TÜV) – falls fällig</li>
+                    <li>SEPA-Lastschriftmandat (für Kfz-Steuer)</li>
+                    <li>eVB-Nummer (elektronische Versicherungsbestätigung)</li>
+                </ul>
+            </div>
+            <div class="ds-info-box">
+                <h3>Verfügbare Online-Vorgänge</h3>
+                <ul>
+                    <li>✅ Neuzulassung (Neuwagen)</li>
+                    <li>✅ Wiederzulassung</li>
+                    <li>✅ Umschreibung auf neuen Halter</li>
+                    <li>✅ Außerbetriebsetzung (Abmeldung)</li>
+                    <li>✅ Wunschkennzeichen reservieren</li>
+                    <li>⏳ Tageszulassung (in Planung)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ÜBERSICHT als KERN Description List -->
+        <h2 class="ds-section-title">Auf einen Blick</h2>
+        <dl class="kern-description-list">
+            <div class="kern-description-list-item">
+                <dt class="kern-description-list-item__key">Zuständige Stelle</dt>
+                <dd>Kfz-Zulassungsstelle Mosbach oder Buchen</dd>
+            </div>
+            <div class="kern-description-list-item">
+                <dt class="kern-description-list-item__key">Bearbeitungszeit</dt>
+                <dd>Online: sofort · Vor Ort: 1–3 Werktage</dd>
+            </div>
+            <div class="kern-description-list-item">
+                <dt class="kern-description-list-item__key">Kosten (Gebühren)</dt>
+                <dd>Ab ca. 26,30 € (je nach Vorgang) + Kennzeichen</dd>
+            </div>
+            <div class="kern-description-list-item">
+                <dt class="kern-description-list-item__key">Rechtliche Grundlage</dt>
+                <dd>Fahrzeug-Zulassungsverordnung (FZV) · §§ 6 ff.</dd>
+            </div>
+            <div class="kern-description-list-item">
+                <dt class="kern-description-list-item__key">Online-Verfahren</dt>
+                <dd>i-Kfz (bundesweites Verfahren, BMVI)</dd>
+            </div>
+        </dl>
+
+        <!-- FAQ ACCORDION (Häufig gestellte Fragen) -->
+        <h2 class="ds-section-title">Häufig gestellte Fragen</h2>
+
+        <details class="kern-accordion">
+            <summary>
+                <span>Was benötige ich für die Online-Zulassung?</span>
+            </summary>
+            <div class="kern-accordion__content">
+                <p>Für die Online-Zulassung über das i-Kfz-Verfahren benötigen Sie:</p>
+                <ul>
+                    <li><strong>Personalausweis mit aktivierter eID-Funktion</strong> (Online-Ausweis) und die dazugehörige 6-stellige PIN</li>
+                    <li><strong>AusweisApp</strong> auf Ihrem Smartphone oder PC installiert</li>
+                    <li>Die <strong>Sicherheitscodes</strong> von der Zulassungsbescheinigung Teil I und II (aufgedruckt auf dem Dokument)</li>
+                    <li>Eine gültige <strong>eVB-Nummer</strong> Ihrer Kfz-Versicherung</li>
+                    <li>Ein <strong>SEPA-Lastschriftmandat</strong> für die Abbuchung der Kfz-Steuer</li>
+                </ul>
+                <p>
+                    <span class="kern-badge kern-badge--info">Tipp</span>
+                    &nbsp;Die eID-Funktion können Sie kostenlos beim Bürgeramt aktivieren lassen.
+                </p>
+            </div>
+        </details>
+
+        <details class="kern-accordion">
+            <summary>
+                <span>Was kostet die KFZ-Zulassung?</span>
+            </summary>
+            <div class="kern-accordion__content">
+                <p>Die Gebühren variieren je nach Vorgang. Hier ein Überblick:</p>
+                <dl class="kern-description-list">
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Neuzulassung</dt>
+                        <dd>26,30 € + Kennzeichenkosten</dd>
+                    </div>
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Umschreibung</dt>
+                        <dd>27,00 € + ggf. Kennzeichenkosten</dd>
+                    </div>
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Abmeldung</dt>
+                        <dd>7,90 € (online kostenlos möglich)</dd>
+                    </div>
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Wunschkennzeichen</dt>
+                        <dd>+10,20 € Aufpreis</dd>
+                    </div>
+                </dl>
+                <p style="font-size:13px; color:#777; margin-top:10px;">Alle Preise ohne Gewähr. Aktuelle Gebühren laut Kfz-Kostenverordnung.</p>
+            </div>
+        </details>
+
+        <details class="kern-accordion">
+            <summary>
+                <span>Mein Ausweis hat keine eID-Funktion – was nun?</span>
+            </summary>
+            <div class="kern-accordion__content">
+                <p>Wenn Ihr Personalausweis keine aktive Online-Ausweisfunktion (eID) hat oder Sie keinen Smartphone-NFC-Leser besitzen, gibt es zwei Möglichkeiten:</p>
+                <ul>
+                    <li><strong>eID aktivieren lassen:</strong> Besuchen Sie das Bürgeramt – die Aktivierung ist kostenlos und dauert wenige Minuten.</li>
+                    <li><strong>Persönlich zur Zulassungsstelle:</strong> Vereinbaren Sie einen Termin online unter <a href="https://www.mein-check-in.de/neckar-odenwald-kreis/" target="_blank">mein-check-in.de</a>.</li>
+                </ul>
+                <p>
+                    <span class="kern-badge kern-badge--warning">Hinweis</span>
+                    &nbsp;Auch mit altem Personalausweis (ohne eID) ist die Online-Zulassung nicht möglich. Ein neuer Ausweis muss beantragt werden.
+                </p>
+            </div>
+        </details>
+
+        <details class="kern-accordion">
+            <summary>
+                <span>Wie lange dauert die Bearbeitung?</span>
+            </summary>
+            <div class="kern-accordion__content">
+                <p>Die Bearbeitungszeiten unterscheiden sich je nach Verfahren:</p>
+                <ul>
+                    <li><strong>Online-Zulassung (i-Kfz):</strong> In der Regel innerhalb weniger Minuten abgeschlossen. Das Kennzeichen wird vorab reserviert.</li>
+                    <li><strong>Zulassung vor Ort:</strong> Mit Termin meist 30–45 Minuten.</li>
+                    <li><strong>Abmeldung online:</strong> Sofort — Sie erhalten eine digitale Bestätigung.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="kern-accordion">
+            <summary>
+                <span>Welche Öffnungszeiten hat die Zulassungsstelle?</span>
+            </summary>
+            <div class="kern-accordion__content">
+                <dl class="kern-description-list">
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Standort Mosbach</dt>
+                        <dd>Mo–Fr 8:00–12:00 Uhr, Di + Do 14:00–16:00 Uhr</dd>
+                    </div>
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Standort Buchen</dt>
+                        <dd>Mo–Fr 8:30–12:00 Uhr</dd>
+                    </div>
+                    <div class="kern-description-list-item">
+                        <dt class="kern-description-list-item__key">Online-Service</dt>
+                        <dd>24 Stunden / 7 Tage die Woche</dd>
+                    </div>
+                </dl>
+                <p style="margin-top:10px;">
+                    <a href="https://www.mein-check-in.de/neckar-odenwald-kreis/" target="_blank" class="kern-btn kern-btn--secondary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-size:13px;">
+                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                        <span class="kern-label">Termin online buchen</span>
+                    </a>
+                </p>
+            </div>
+        </details>
+
+        <details class="kern-accordion">
+            <summary>
+                <span>Kann ich ein Wunschkennzeichen reservieren?</span>
+            </summary>
+            <div class="kern-accordion__content">
+                <p>Ja! Wunschkennzeichen können Sie bequem online reservieren und direkt im Zulassungsvorgang verwenden.</p>
+                <ul>
+                    <li>Reservierung gilt für <strong>30 Tage</strong></li>
+                    <li>Kosten: <strong>10,20 €</strong> Aufpreis</li>
+                    <li>Verfügbarkeit sofort prüfbar</li>
+                </ul>
+                <p>
+                    <a href="https://www.neckar-odenwald-kreis.de/Service/Online-Dienste/Wunschkennzeichen.html"
+                       target="_blank" class="kern-btn kern-btn--primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-size:13px;">
+                        <i class="fa fa-tag" aria-hidden="true"></i>
+                        <span class="kern-label">Wunschkennzeichen prüfen →</span>
+                    </a>
+                </p>
+            </div>
+        </details>
+
+        <!-- DOWNLOADS & FLYER -->
+        <h2 class="ds-section-title">Dokumente &amp; Downloads</h2>
+        <ul class="ds-download-list" aria-label="Verfügbare Dokumente">
+
+            <li class="ds-download-item">
+                <div class="ds-download-icon pdf" aria-hidden="true">
+                    <i class="fa fa-file-pdf-o"></i>
+                </div>
+                <div class="ds-download-info">
+                    <div class="ds-download-name">Checkliste KFZ-Zulassung</div>
+                    <div class="ds-download-meta">PDF · 2 Seiten · 180 KB · Landratsamt NOK</div>
+                </div>
+                <a href="https://www.neckar-odenwald-kreis.de/Service/Online-Dienste/Online-KFZ-Zulassung.html"
+                   target="_blank" class="ds-download-link" aria-label="Checkliste KFZ-Zulassung herunterladen">
+                    <i class="fa fa-download" aria-hidden="true"></i> Download
+                </a>
+            </li>
+
+            <li class="ds-download-item">
+                <div class="ds-download-icon pdf" aria-hidden="true">
+                    <i class="fa fa-file-pdf-o"></i>
+                </div>
+                <div class="ds-download-info">
+                    <div class="ds-download-name">Anleitung eID &amp; AusweisApp</div>
+                    <div class="ds-download-meta">PDF · 4 Seiten · 420 KB · Bundesministerium des Innern</div>
+                </div>
+                <a href="https://www.ausweisapp.bund.de/" target="_blank" rel="noopener"
+                   class="ds-download-link" aria-label="Anleitung eID herunterladen">
+                    <i class="fa fa-download" aria-hidden="true"></i> Download
+                </a>
+            </li>
+
+            <li class="ds-download-item">
+                <div class="ds-download-icon" aria-hidden="true" style="background:#1a7b9b;">
+                    <i class="fa fa-file-text-o"></i>
+                </div>
+                <div class="ds-download-info">
+                    <div class="ds-download-name">Gebührentabelle Kfz-Zulassung 2026</div>
+                    <div class="ds-download-meta">PDF · 1 Seite · 95 KB · Kfz-Kostenverordnung</div>
+                </div>
+                <a href="https://www.neckar-odenwald-kreis.de/Service/Online-Dienste/Online-KFZ-Zulassung.html"
+                   target="_blank" class="ds-download-link" aria-label="Gebührentabelle herunterladen">
+                    <i class="fa fa-download" aria-hidden="true"></i> Download
+                </a>
+            </li>
+
+            <li class="ds-download-item">
+                <div class="ds-download-icon" aria-hidden="true" style="background:#94c11f;">
+                    <i class="fa fa-info-circle"></i>
+                </div>
+                <div class="ds-download-info">
+                    <div class="ds-download-name">Flyer: Online-Services Landratsamt NOK</div>
+                    <div class="ds-download-meta">PDF · 2 Seiten · 1,2 MB · Landratsamt NOK</div>
+                </div>
+                <a href="https://www.neckar-odenwald-kreis.de" target="_blank" class="ds-download-link"
+                   aria-label="Flyer Online-Services herunterladen">
+                    <i class="fa fa-download" aria-hidden="true"></i> Download
+                </a>
+            </li>
+
+        </ul>
+
+    </article>
+
+    <!-- ══════════ RECHTE SIDEBAR ══════════ -->
+    <aside class="ds-aside" aria-label="Zusatzinformationen">
+
+        <!-- Service-Status -->
+        <div class="ds-aside-box">
+            <h3>Service-Status</h3>
+            <div class="ds-status-row">
+                <div class="ds-status-dot" title="Online verfügbar"></div>
+                <span>Online-Zulassung: <strong style="color:#94c11f;">Verfügbar</strong></span>
+            </div>
+            <div class="ds-status-row">
+                <div class="ds-status-dot" title="Online verfügbar"></div>
+                <span>Terminbuchung: <strong style="color:#94c11f;">Offen</strong></span>
+            </div>
+            <div class="ds-status-row">
+                <div class="ds-status-dot" style="background:#94c11f;"></div>
+                <span>i-Kfz Portal: <strong style="color:#94c11f;">Aktiv</strong></span>
+            </div>
+            <hr style="border:none; border-top:1px solid #e0e0e0; margin:14px 0;">
+            <p style="font-size:13px; color:#888; margin:0;">
+                Letztes Update: 08. September 2026
+            </p>
+        </div>
+
+        <!-- Kontakt -->
+        <div class="ds-aside-box">
+            <h3>Persönlicher Kontakt</h3>
+            <div class="ds-contact-item">
+                <i class="fa fa-building" aria-hidden="true"></i>
+                <div>
+                    <strong>Kfz-Zulassungsstelle Mosbach</strong><br>
+                    Neckarelzer Str. 7, 74821 Mosbach
+                </div>
+            </div>
+            <div class="ds-contact-item">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <div><a href="tel:+4962618400" style="text-decoration:none;">06261 84 - 0</a></div>
+            </div>
+            <div class="ds-contact-item">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                <div>Mo–Fr 8:00–12:00 Uhr<br>Di + Do 14:00–16:00 Uhr</div>
+            </div>
+            <a href="https://www.mein-check-in.de/neckar-odenwald-kreis/" target="_blank"
+               class="kern-btn kern-btn--primary" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:12px;">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span class="kern-label">Termin buchen</span>
+            </a>
+        </div>
+
+        <!-- Weitere Services -->
+        <div class="ds-aside-box">
+            <h3>Ähnliche Services</h3>
+            <ul style="list-style:none; padding:0; margin:0;">
+                <li style="padding:7px 0; border-bottom:1px solid #e8e8e8; font-size:14px;">
+                    <a href="https://www.neckar-odenwald-kreis.de/Service/Online-Dienste/Wunschkennzeichen.html" target="_blank">
+                        <i class="fa fa-tag" aria-hidden="true" style="color:#94c11f; margin-right:8px;"></i>Wunschkennzeichen
+                    </a>
+                </li>
+                <li style="padding:7px 0; border-bottom:1px solid #e8e8e8; font-size:14px;">
+                    <a href="https://www.neckar-odenwald-kreis.de/Landratsamt/Verwaltung/Fachbereich+2+-+Umwelt_+Landentwicklung+und+Ordnungswesen/Verkehr+und+Ordnungswidrigkeiten/Fahrerlaubnisrecht.html" target="_blank">
+                        <i class="fa fa-id-card-o" aria-hidden="true" style="color:#94c11f; margin-right:8px;"></i>Führerschein
+                    </a>
+                </li>
+                <li style="padding:7px 0; font-size:14px;">
+                    <a href="https://www.neckar-odenwald-kreis.de/Service/Online-Dienste/Geoinformationssystem+(GIS)+%E2%80%93+NOKmaps.html" target="_blank">
+                        <i class="fa fa-map-o" aria-hidden="true" style="color:#94c11f; margin-right:8px;"></i>NOKmaps GIS
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Feedback -->
+        <div class="ds-aside-box" style="background:#f0f8e8; border:1px solid #d0e8a0;">
+            <h3 style="color:#5a8a0f;">War diese Seite hilfreich?</h3>
+            <div style="display:flex; gap:8px;">
+                <button class="kern-btn kern-btn--secondary" style="flex:1; font-size:13px;"
+                        onclick="this.textContent='👍 Danke!'; this.disabled=true;">
+                    <span class="kern-label">👍 Ja</span>
+                </button>
+                <button class="kern-btn kern-btn--secondary" style="flex:1; font-size:13px;"
+                        onclick="this.textContent='Danke!'; this.disabled=true;">
+                    <span class="kern-label">👎 Nein</span>
+                </button>
+            </div>
+        </div>
+
+    </aside>
+</div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#303030; color:#ccc; padding:24px; margin-top:0;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px;">
+        <span style="font-size:13px;">© 2026 Landratsamt Neckar-Odenwald-Kreis</span>
+        <div style="display:flex; gap:16px; font-size:13px;">
+            <a href="https://www.neckar-odenwald-kreis.de/Impressum.html" target="_blank" style="color:#bbb; text-decoration:none;">Impressum</a>
+            <a href="https://www.neckar-odenwald-kreis.de/Datenschutz.html" target="_blank" style="color:#bbb; text-decoration:none;">Datenschutz</a>
+            <a href="https://www.neckar-odenwald-kreis.de/Barrierefreiheit.html" target="_blank" style="color:#bbb; text-decoration:none;">Barrierefreiheit</a>
+            <a href="service.html" style="color:#94c11f; font-weight:bold; text-decoration:none;">← Alle Services</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

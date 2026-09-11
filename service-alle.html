@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vollständige Liste | Digitales Landratsamt NOK</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kern-ux/native@2.7.2/dist/kern.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kern-ux/native@2.7.2/dist/fonts/fira-sans.css">
+<style>
+:root {
+    --nok-gruen: #94c11f;
+    --nok-blau:  #1a7b9b;
+}
+body { font-family: 'Fira Sans', sans-serif; background: #f9fbfb; margin:0; color: #303030; line-height: 1.6; }
+a { color: var(--nok-blau); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header (Balken oben) */
+.ds-top-bar { 
+    background: #fff; 
+    padding: 12px 24px; 
+    border-bottom: 1px solid #eaeaea; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    position: relative; 
+}
+.ds-top-bar a.back-link { 
+    font-weight: 600; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    font-size: 1rem; 
+    color: #555;
+}
+.ds-top-bar a.back-link:hover { color: var(--nok-blau); }
+.ds-top-bar img { height: 35px; width: auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); }
+
+/* Page Content */
+.container { max-width: 1400px; margin: 40px auto; padding: 0 24px; }
+.page-title { font-size: 2.8rem; margin-bottom: 10px; color: #303030; }
+.page-subtitle { font-size: 1.2rem; color: #666; margin-bottom: 50px; max-width: 800px; }
+
+/* Section 1: Kategorie-Übersicht */
+.category-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+.cat-card { background: #fff; padding: 30px; border-radius: 8px; border: 1px solid #eee; border-top: 5px solid var(--nok-gruen); box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+.cat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-top-color: var(--nok-blau); }
+.cat-card h3 { margin: 0 0 20px 0; font-size: 1.3rem; color: var(--nok-blau); display: flex; align-items: center; gap: 12px; }
+.cat-card h3 svg { flex-shrink: 0; }
+.cat-card ul { margin: 0; padding: 0; list-style: none; color: #555; flex-grow: 1; }
+.cat-card ul li { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f4f4f4; }
+.cat-card ul li:last-child { border-bottom: none; }
+.cat-card ul li a { color: #444; display: block; font-weight: 500; }
+.cat-card ul li a:hover { color: var(--nok-blau); }
+
+.full-list-link { display: inline-block; margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; font-weight: 700; color: var(--nok-blau); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.full-list-link:hover { color: var(--nok-gruen); text-decoration: none; }
+
+@media (max-width: 1024px) {
+    .category-overview { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .category-overview { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="ds-top-bar">
+    <a href="service.html" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück zum Portal
+    </a>
+    <img src="logo-nok.png" alt="NOK Logo">
+</header>
+
+<div class="container">
+    <h1 class="page-title">Lebenslagen A-Z</h1>
+    <p class="page-subtitle">Wählen Sie das Themengebiet aus, um alle dazugehörigen Formulare und Leistungen gesammelt auf einer Seite anzuzeigen.</p>
+
+    <div class="category-overview">
+        
+        <!-- 1. Auto, KFZ & Führerschein -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="10" rx="2" ry="2"></rect><path d="M4 10L7 4h10l3 6"></path><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg> Auto, KFZ & Führerschein</h3>
+            <ul>
+                <li><a href="service-kfz.html">KFZ-Zulassung</a></li>
+                <li><a href="dummy-formular.html">Führerschein beantragen</a></li>
+                <li><a href="dummy-formular.html">Wunschkennzeichen</a></li>
+            </ul>
+            <a href="service-auto.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 2. Einwanderung, Aufenthalt & Asyl -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Einwanderung & Asyl</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Spätaussiedler</a></li>
+                <li><a href="dummy-formular.html">Aufenthaltstitel</a></li>
+                <li><a href="dummy-formular.html">Einbürgerung</a></li>
+            </ul>
+            <a href="service-einwanderung.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 3. Soziales, Jugend, Senioren & Familie -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Soziales & Familie</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Grundsicherung</a></li>
+                <li><a href="dummy-formular.html">Elterngeld</a></li>
+                <li><a href="dummy-formular.html">Unterhaltsvorschuss</a></li>
+            </ul>
+            <a href="service-soziales.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 4. Sicherheit und Ordnung -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Sicherheit & Ordnung</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Personenstand & Name</a></li>
+                <li><a href="dummy-formular.html">Polizeibehörde</a></li>
+                <li><a href="dummy-formular.html">Waffenrecht</a></li>
+            </ul>
+            <a href="service-sicherheit.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 5. Tiere, Landwirtschaft & Lebensmittel -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg> Tiere & Landwirtschaft</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Lebensmittelhygiene</a></li>
+                <li><a href="dummy-formular.html">Tiergesundheit</a></li>
+                <li><a href="dummy-formular.html">Tierschutz</a></li>
+            </ul>
+            <a href="service-tiere.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 6. Abfall & Entsorgung -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> Abfall & Entsorgung</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Abfallrecht</a></li>
+                <li><a href="dummy-formular.html">Mülltonnen & Gebühren</a></li>
+                <li><a href="dummy-formular.html">Sperrmüll</a></li>
+            </ul>
+            <a href="service-abfall.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 7. Bauen, Wohnen & Immobilien -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Bauen & Wohnen</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Bauantrag stellen</a></li>
+                <li><a href="dummy-formular.html">Wohngeld beantragen</a></li>
+                <li><a href="dummy-formular.html">Wohnraumförderung</a></li>
+            </ul>
+            <a href="service-bauen.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 8. Umwelt, Wasser & Naturschutz -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg> Umwelt & Naturschutz</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Immissionsschutz</a></li>
+                <li><a href="dummy-formular.html">Naturschutz</a></li>
+                <li><a href="dummy-formular.html">Gewässer & Altlasten</a></li>
+            </ul>
+            <a href="service-umwelt.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+        <!-- 9. Unternehmen, Gewerbe & Arbeitsschutz -->
+        <div class="cat-card">
+            <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Unternehmen & Gewerbe</h3>
+            <ul>
+                <li><a href="dummy-formular.html">Arbeitsschutz</a></li>
+                <li><a href="dummy-formular.html">Gewerbeaufsicht</a></li>
+                <li><a href="dummy-formular.html">Gewerbeanmeldung</a></li>
+            </ul>
+            <a href="service-unternehmen.html" class="full-list-link">Vollständige Liste anzeigen →</a>
+        </div>
+
+    </div>
+</div>
+
+<footer style="background:#303030; color:#ccc; padding:40px 24px; margin-top: 20px;">
+    <div style="max-width:1200px; margin:0 auto; text-align: center; font-size: 14px;">
+        © 2026 Landratsamt Neckar-Odenwald-Kreis | Digitales Landratsamt
+    </div>
+</footer>
+
+</body>
+</html>

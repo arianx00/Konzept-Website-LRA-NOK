@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitales Landratsamt - NOK</title>
+    <!-- Lato Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            background-color: var(--nok-blue);
+            color: var(--nok-white);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        .page-header h1 {
+            color: var(--nok-white);
+            margin-bottom: 10px;
+        }
+        .filter-bar {
+            background: var(--nok-white);
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-top: -30px;
+            position: relative;
+            display: flex;
+            gap: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 10px 15px;
+            border: 1px solid var(--nok-light-gray);
+            border-radius: 4px;
+            font-family: var(--font-family);
+            flex-grow: 1;
+        }
+        .service-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--nok-white);
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.2s;
+            border-left: 4px solid var(--nok-light-green);
+        }
+        .service-list-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .service-info h3 {
+            margin-bottom: 5px;
+            color: var(--nok-blue);
+        }
+        .service-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            background-color: var(--nok-light-gray-2);
+            color: var(--nok-dark-gray);
+            margin-right: 8px;
+        }
+        .badge.online {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Accessibility & Meta Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-links">
+                <a href="#"><i class="fa-solid fa-universal-access"></i> Barrierefreiheit</a>
+                <a href="#"><i class="fa-solid fa-book-open"></i> Leichte Sprache</a>
+                <a href="#"><i class="fa-solid fa-hands"></i> Gebärdensprache</a>
+            </div>
+            <div class="social-icons">
+                <span>Besuchen Sie uns:</span>
+                <a href="https://www.facebook.com/LandratsamtNOK" target="_blank" title="Facebook"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="container header-main">
+            <!-- Simulated Logo text to avoid missing images, strictly using NOK font/colors -->
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+                    <!-- Placeholder for the actual crest/wappen -->
+                    <div style="width: 40px; height: 50px; background-color: var(--nok-light-green); border-radius: 4px 4px 20px 20px; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold;">NOK</div>
+                    <div>
+                        <div style="font-size: 20px; font-weight: 900; color: var(--nok-dark-gray); line-height:1;">Landratsamt</div>
+                        <div style="font-size: 14px; font-weight: 400; color: var(--nok-light-gray);">Neckar-Odenwald-Kreis</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#anliegen">Ihr Anliegen</a></li>
+                    <li><a href="digital.html" class="active">Digital & Service</a></li>
+                    <li><a href="index.html#landkreis">Landkreis</a></li>
+                    <li><a href="index.html#politik">Politik & Verwaltung</a></li>
+                    <li><a href="index.html#aktuelles">Aktuelles</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass text-primary"></i>
+                    <input type="text" placeholder="Suchen...">
+                </div>
+                <a href="#" class="btn btn-primary">Termin buchen</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Digitales Landratsamt & Services</h1>
+            <p>Suchen und finden Sie alle verfügbaren Dienstleistungen, Formulare und Online-Services.</p>
+        </div>
+    </div>
+
+    <section class="section bg-light" style="min-height: 600px;">
+        <div class="container">
+            
+            <div class="filter-bar">
+                <input type="text" placeholder="Welchen Service suchen Sie? (z.B. Bauantrag, KFZ...)">
+                <select>
+                    <option value="">Alle Lebenslagen</option>
+                    <option value="auto">Auto & Verkehr</option>
+                    <option value="bauen">Wohnen & Bauen</option>
+                    <option value="familie">Familie & Kinder</option>
+                </select>
+                <select>
+                    <option value="">Alle Service-Arten</option>
+                    <option value="online">Vollständig Online</option>
+                    <option value="formular">PDF-Formular</option>
+                    <option value="info">Information</option>
+                </select>
+                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Filtern</button>
+            </div>
+
+            <div class="mt-lg">
+                <!-- Service Item 1 -->
+                <div class="service-list-item">
+                    <div class="service-info">
+                        <h3><i class="fa-solid fa-car text-primary"></i> KFZ-Zulassung online (i-Kfz)</h3>
+                        <p>Fahrzeug an-, ab- oder ummelden ohne Besuch im Landratsamt.</p>
+                        <div class="mt-sm">
+                            <span class="badge online"><i class="fa-solid fa-laptop"></i> Online-Dienst</span>
+                            <span class="badge">Auto & Verkehr</span>
+                        </div>
+                    </div>
+                    <div class="service-action">
+                        <a href="#" class="btn btn-secondary">Zum Service</a>
+                    </div>
+                </div>
+
+                <!-- Service Item 2 -->
+                <div class="service-list-item">
+                    <div class="service-info">
+                        <h3><i class="fa-solid fa-calendar-check text-primary"></i> Termin buchen (mein-check-in)</h3>
+                        <p>Buchen Sie online einen Termin bei der Fahrerlaubnisbehörde oder Ausländerbehörde.</p>
+                        <div class="mt-sm">
+                            <span class="badge online"><i class="fa-solid fa-laptop"></i> Online-Dienst</span>
+                            <span class="badge">Bürger & Recht</span>
+                        </div>
+                    </div>
+                    <div class="service-action">
+                        <a href="#" class="btn btn-secondary">Zum Service</a>
+                    </div>
+                </div>
+
+                <!-- Service Item 3 -->
+                <div class="service-list-item">
+                    <div class="service-info">
+                        <h3><i class="fa-solid fa-house-chimney text-primary"></i> Wohngeld beantragen</h3>
+                        <p>Prüfen Sie Ihren Anspruch und stellen Sie den Antrag direkt online.</p>
+                        <div class="mt-sm">
+                            <span class="badge online"><i class="fa-solid fa-laptop"></i> Online-Dienst</span>
+                            <span class="badge">Wohnen & Bauen</span>
+                            <span class="badge">Arbeit & Soziales</span>
+                        </div>
+                    </div>
+                    <div class="service-action">
+                        <a href="#" class="btn btn-secondary">Zum Service</a>
+                    </div>
+                </div>
+
+                <!-- Service Item 4 -->
+                <div class="service-list-item">
+                    <div class="service-info">
+                        <h3><i class="fa-solid fa-file-pdf text-primary"></i> Bauantrag (Formulare)</h3>
+                        <p>Laden Sie die notwendigen Formulare für Ihr Bauvorhaben herunter.</p>
+                        <div class="mt-sm">
+                            <span class="badge"><i class="fa-solid fa-file-pdf"></i> PDF-Formular</span>
+                            <span class="badge">Wohnen & Bauen</span>
+                        </div>
+                    </div>
+                    <div class="service-action">
+                        <a href="#" class="btn btn-secondary" style="background-color: var(--nok-light-gray); color: var(--nok-dark-gray);">Details & Downloads</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <!-- Same footer structure as index -->
+        <div class="container grid-4">
+            <div>
+                <h4>Über den Landkreis</h4>
+                <ul>
+                    <li><a href="#">Städte & Gemeinden</a></li>
+                    <li><a href="#">Portrait & Geschichte</a></li>
+                    <li><a href="#">Tourismus</a></li>
+                    <li><a href="#">Karriere im Landratsamt</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Service & Online</h4>
+                <ul>
+                    <li><a href="digital.html">Digitales Landratsamt</a></li>
+                    <li><a href="#">Formulare & Merkblätter</a></li>
+                    <li><a href="#">Terminvereinbarung</a></li>
+                    <li><a href="#">Ausschreibungen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot" style="width: 20px;"></i> Neckar-Odenwald-Kreis</li>
+                    <li><i class="fa-solid fa-house" style="width: 20px;"></i> Neckarelzer Str. 7, 74821 Mosbach</li>
+                    <li><i class="fa-solid fa-phone" style="width: 20px;"></i> 06261 / 84-0</li>
+                    <li><i class="fa-solid fa-envelope" style="width: 20px;"></i> post@neckar-odenwald-kreis.de</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Folgen Sie uns</h4>
+                <div style="font-size: 2rem; margin-top: 10px;">
+                    <a href="https://www.facebook.com/LandratsamtNOK" style="margin-right: 15px;"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Landratsamt Neckar-Odenwald-Kreis | <a href="#">Impressum</a> | <a href="#">Datenschutz</a> | <a href="#">Barrierefreiheit</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

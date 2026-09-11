@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Digitales Landratsamt | Neckar-Odenwald-Kreis</title>
+
+<!-- KERN UX-Standard v2.7.2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kern-ux/native@2.7.2/dist/kern.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kern-ux/native@2.7.2/dist/fonts/fira-sans.css">
+
+<style>
+/* ═══════════════════════════════════════════════════
+   NOK Farben & KERN Overrides
+   ═══════════════════════════════════════════════════ */
+:root {
+    --nok-gruen:   #94c11f;
+    --nok-blau:    #1a7b9b;
+    --kern-color-primary:       #94c11f;
+    --kern-color-primary-hover: #7faa19;
+    --kern-font-family: 'Fira Sans', Lato, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: 'Fira Sans', Lato, sans-serif; background: #fff; color: #303030; }
+a { color: var(--nok-blau); }
+
+.skip-link { position: absolute; left: -9999px; background: #fff; color: #000; padding: 8px 16px; z-index: 9999; font-weight: bold; }
+.skip-link:focus { left: 16px; top: 16px; }
+
+/* ── NAHTLOSER HEADER (Transparent über dem Bild) ── */
+.ds-header {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ds-logo img {
+    height: 75px; 
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); 
+}
+
+.header-actions {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+.header-icon-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    transition: transform 0.2s, color 0.2s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+}
+.header-icon-btn:hover {
+    color: var(--nok-gruen);
+    transform: scale(1.05);
+}
+.header-icon-btn svg {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* ── 100vh FULLSCREEN HERO ── */
+.bochum-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('landratsamt.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bochum-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+}
+.bochum-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 750px; 
+    padding: 0 24px;
+    transform: translateY(-5vh);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+.bochum-hero-content h1 {
+    color: #fff;
+    font-size: 2.5rem; 
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    text-align: left;
+    width: 100%;
+}
+
+/* Große Suche */
+.bochum-search-form {
+    display: flex;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    padding: 6px;
+    width: 100%; 
+}
+.bochum-search-form input {
+    flex: 1;
+    padding: 16px 24px; 
+    font-size: 1.15rem; 
+    border: none;
+    outline: none;
+    font-family: inherit;
+    color: #303030;
+}
+.bochum-search-form input::placeholder { color: #888; }
+.bochum-search-form button {
+    background: var(--nok-blau);
+    color: #fff;
+    border: none;
+    padding: 0 36px; 
+    font-size: 1.15rem; 
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+.bochum-search-form button:hover {
+    background: #145f78; 
+}
+
+/* ── TOP-THEMEN KACHELN (Genau 6 Kacheln) ── */
+.top-themen-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 24px;
+}
+.top-themen-section h2 {
+    font-size: 2.5rem;
+    color: #303030;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.kachel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; 
+    background: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.top-topic-card {
+    background: #fff;
+    padding: 40px 32px;
+    border-top: 5px solid transparent;
+    transition: background 0.2s, border-top-color 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover-Effekte auf BLAU */
+.top-topic-card:hover {
+    background: #fcfcfc;
+    border-top-color: var(--nok-blau);
+}
+.top-topic-card:hover h3 svg {
+    stroke: var(--nok-blau);
+}
+
+.top-topic-card h3 {
+    font-size: 1.3rem;
+    color: var(--nok-blau);
+    margin-top: 0;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.top-topic-card h3 svg {
+    transition: stroke 0.2s;
+    flex-shrink: 0;
+}
+
+.topic-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+.topic-links li {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f4f4f4;
+}
+.topic-links li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.topic-links a {
+    text-decoration: none;
+    color: #444;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    transition: color 0.15s;
+    line-height: 1.3;
+}
+.topic-links a::after {
+    content: '›';
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--nok-gruen);
+    font-weight: bold;
+    transition: transform 0.15s, color 0.15s;
+}
+.topic-links a:hover { color: var(--nok-blau); }
+.topic-links a:hover::after { 
+    transform: translateX(5px); 
+    color: var(--nok-blau); 
+}
+
+/* ── BURGER MENÜ (Zwei-Säulen-Navigation) ── */
+.burger-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(2px);
+    z-index: 900; display: none; opacity: 0; transition: opacity 0.3s;
+}
+.burger-overlay.open { display: block; opacity: 1; }
+.burger-menu {
+    position: fixed; top: 0; right: -450px; width: 450px; max-width: 100%; bottom: 0;
+    background: #fff; z-index: 1000; box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; flex-direction: column;
+}
+.burger-menu.open { right: 0; }
+.burger-header { padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+.burger-close { background: none; border: none; font-size: 28px; cursor: pointer; color: #303030; padding: 0 10px; }
+.burger-close:hover { color: var(--nok-gruen); }
+.burger-content { padding: 32px; overflow-y: auto; flex-grow: 1; }
+.burger-nav-group { margin-bottom: 40px; }
+.burger-nav-group h3 { font-size: 1rem; color: var(--nok-gruen); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px;}
+.burger-nav-group ul { list-style: none; padding: 0; margin: 0; }
+.burger-nav-group li { margin-bottom: 16px; }
+.burger-nav-group a { color: #303030; text-decoration: none; font-size: 1.3rem; font-weight: 600; display: block; transition: color 0.2s, transform 0.2s; }
+.burger-nav-group a:hover { color: var(--nok-blau); transform: translateX(5px); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+    .kachel-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .bochum-hero h1 { font-size: 1.8rem; margin-bottom: 16px; }
+    .bochum-search-form { flex-direction: column; padding: 0; background: transparent; box-shadow: none; gap: 8px;}
+    .bochum-search-form input { border-radius: 8px; padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .bochum-search-form button { border-radius: 8px; padding: 16px; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .kachel-grid { grid-template-columns: 1fr; border-radius: 0; border: none; }
+    .ds-header { padding: 16px 20px; flex-direction: column; gap: 20px; align-items: center; }
+    .header-actions { width: 100%; justify-content: flex-end; }
+    .ds-logo img { height: 50px; }
+}
+</style>
+</head>
+<body>
+
+<header class="ds-header">
+    <div class="ds-logo">
+        <a href="service.html"><img src="logo-nok.png" alt="NOK Logo"></a>
+    </div>
+    <div class="header-actions">
+        <button class="header-icon-btn" aria-label="Suche öffnen">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Suchen</span>
+        </button>
+        <button class="header-icon-btn" aria-label="Menü öffnen" onclick="openBurger()">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <span>Menü</span>
+        </button>
+    </div>
+</header>
+
+<!-- ══ BURGER MENÜ (Brücke zwischen den zwei Säulen) ══ -->
+<div class="burger-overlay" id="burgerOverlay" onclick="closeBurger()"></div>
+<nav class="burger-menu" id="burgerMenu">
+    <div class="burger-header">
+        <img src="logo-nok.png" height="40" alt="Logo">
+        <button class="burger-close" onclick="closeBurger()">✕</button>
+    </div>
+    <div class="burger-content">
+        <!-- Transaktionale Säule -->
+        <div class="burger-nav-group">
+            <h3>Service & Online</h3>
+            <ul>
+                <li><a href="service.html">Digitales Landratsamt</a></li>
+                <li><a href="service-alle.html">Formulare A-Z</a></li>
+                <li><a href="service-kfz.html">Zulassungsstelle</a></li>
+                <li><a href="#">Online-Terminvereinbarung</a></li>
+            </ul>
+        </div>
+        <!-- Informationelle Säule -->
+        <div class="burger-nav-group">
+            <h3>Landkreis & Info</h3>
+            <ul>
+                <li><a href="index.html">Startseite & Aktuelles</a></li>
+                <li><a href="#">Leben im Landkreis</a></li>
+                <li><a href="#">Kreistag & Wahlen</a></li>
+                <li><a href="#">Karriere im Amt</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function openBurger() {
+        document.getElementById('burgerOverlay').classList.add('open');
+        document.getElementById('burgerMenu').classList.add('open');
+    }
+    function closeBurger() {
+        document.getElementById('burgerOverlay').classList.remove('open');
+        document.getElementById('burgerMenu').classList.remove('open');
+    }
+</script>
+
+<main id="main-content">
+    
+    <section class="bochum-hero">
+        <div class="bochum-hero-content">
+            <h1>Was möchten Sie heute erledigen?</h1>
+            <form class="bochum-search-form" action="#" method="get">
+                <input id="hero-search" type="search" placeholder="Leistung oder Formular suchen, z.B. Wohngeld" autocomplete="off">
+                <button type="submit">Suchen</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="top-themen-section">
+        <h2>Häufig gesuchte Themen</h2>
+        
+        <div class="kachel-grid">
+            
+            <!-- 1. Auto, KFZ & Führerschein -->
+            <article class="top-topic-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nok-gruen)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="10" width="18" height="10" rx="2" ry="2"></rect>
+                        <path d="M4 10L7 4h10l3 6"></path>
+                        <circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle>
+                    </svg>
+                    Auto, KFZ &amp; Führerschein
+                </h3>
+                <ul class="topic-links">
+                    <li><a href="service-kfz.html">Zulassung</a></li>
+                    <li><a href="dummy-formular.html">Führerschein</a></li>
+                </ul>
+            </article>
+
+            <!-- 2. Einwanderung, Aufenthalt & Asyl -->
+            <article class="top-topic-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nok-gruen)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    Einwanderung &amp; Aufenthalt
+                </h3>
+                <ul class="topic-links">
+                    <li><a href="dummy-formular.html">Spätaussiedler</a></li>
+                    <li><a href="dummy-formular.html">Asylbewerberleistungen</a></li>
+                    <li><a href="dummy-formular.html">Einbürgerung</a></li>
+                </ul>
+            </article>
+
+            <!-- 3. Soziales, Jugend, Senioren & Familie -->
+            <article class="top-topic-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nok-gruen)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Soziales, Jugend &amp; Familie
+                </h3>
+                <ul class="topic-links">
+                    <li><a href="dummy-formular.html">Beistandschaft</a></li>
+                    <li><a href="dummy-formular.html">Bildungs- &amp; Teilhabepaket</a></li>
+                    <li><a href="dummy-formular.html">Grundsicherung im Alter</a></li>
+                </ul>
+            </article>
+
+            <!-- 4. Sicherheit und Ordnung -->
+            <article class="top-topic-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nok-gruen)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Sicherheit &amp; Ordnung
+                </h3>
+                <ul class="topic-links">
+                    <li><a href="dummy-formular.html">Personenstand &amp; Name</a></li>
+                    <li><a href="dummy-formular.html">Ordnungs- &amp; Polizeibehörde</a></li>
+                    <li><a href="dummy-formular.html">Waffen &amp; Munition</a></li>
+                </ul>
+            </article>
+
+            <!-- 5. Bauen, Wohnen & Immobilien -->
+            <article class="top-topic-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nok-gruen)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Bauen &amp; Wohnen
+                </h3>
+                <ul class="topic-links">
+                    <li><a href="dummy-formular.html">Bauantrag stellen</a></li>
+                    <li><a href="dummy-formular.html">Wohngeld beantragen</a></li>
+                    <li><a href="dummy-formular.html">Wohnraumförderung</a></li>
+                </ul>
+            </article>
+
+            <!-- 6. Abfall & Umwelt (Zusammengefasst als Top-Thema) -->
+            <article class="top-topic-card">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nok-gruen)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Abfall &amp; Umwelt
+                </h3>
+                <ul class="topic-links">
+                    <li><a href="dummy-formular.html">Abfallkalender</a></li>
+                    <li><a href="dummy-formular.html">Sperrmüllanmeldung</a></li>
+                    <li><a href="dummy-formular.html">Naturschutz &amp; Gewässer</a></li>
+                </ul>
+            </article>
+
+        </div>
+
+        <!-- LINK ZUR NEUEN VOLLSTÄNDIGEN SEITE -->
+        <div class="all-topics-wrapper">
+            <a href="service-alle.html" class="kern-btn kern-btn--primary" style="padding:18px 40px; font-size:1.2rem; background: var(--nok-blau); border: none;">
+                <span class="kern-label">Vollständige Liste aller Themen &amp; Leistungen öffnen →</span>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#303030; color:#ccc; padding:40px 24px;">
+    <div style="max-width:1400px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px;">
+        <div style="font-size:14px; line-height:1.6;">
+            <p style="color:#fff; font-weight:700; font-size:16px; margin-top:0;">Landratsamt Neckar-Odenwald-Kreis</p>
+            Neckarelzer Str. 7<br>
+            74821 Mosbach<br><br>
+            Tel: 06261 84 - 0
+        </div>
+        <div style="font-size:14px; text-align:right;">
+            <p style="margin-top:0;">© 2026 Landratsamt NOK</p>
+            <a href="#" style="color:#bbb; text-decoration:none; margin-left:16px;">Impressum</a>
+            <a href="#" style="color:#bbb; text-decoration:none; margin-left:16px;">Datenschutz</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
