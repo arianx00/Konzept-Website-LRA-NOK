@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+# -*- coding: utf-8 -*-
+html = '''<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
         :root {
             --nok-blue: #167a99;
             --nok-blue-hover: #12637c;
-            --bg-light: #f9f9f9;
+            --bg-light: #f4f4f4;
             --text-dark: #333;
         }
 
@@ -26,33 +27,48 @@
         }
 
         /* HEADER */
+        .header-outer {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
-            background: #fff;
-            position: relative;
-        }
-
-        .header-top {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
+            align-items: stretch;
+            height: 100px;
+            padding-left: 20px;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
         .logo img {
             height: 60px;
+        }
+        
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 15px;
         }
 
         .header-tools {
             display: flex;
             gap: 15px;
             align-items: center;
+            padding-right: 20px;
         }
 
         .tool-icon {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 5px;
             display: flex;
             justify-content: center;
@@ -60,26 +76,28 @@
             color: #fff;
             font-weight: bold;
             text-decoration: none;
-            font-size: 24px;
+            font-size: 20px;
         }
         .tool-icon.black { background: #000; border-radius: 8px; }
-        .tool-icon.blue { background: var(--nok-blue); border-radius: 50%; width: 35px; height: 35px; font-size: 14px;}
+        .tool-icon.blue { background: var(--nok-blue); border-radius: 50%; font-size: 14px;}
 
         /* NAVIGATION */
         .main-nav {
             background-color: var(--nok-blue);
             display: flex;
-            justify-content: flex-end;
-            padding: 0;
+            height: 40px;
         }
 
         .main-nav ul {
             list-style: none;
             display: flex;
+            margin: 0;
+            padding: 0;
         }
 
         .main-nav li {
-            border-left: 2px solid #fff;
+            border-left: 1px solid #fff;
+            display: flex;
         }
         
         .main-nav li:first-child {
@@ -87,11 +105,12 @@
         }
 
         .main-nav a {
-            display: block;
+            display: flex;
+            align-items: center;
             color: #fff;
             text-decoration: none;
-            padding: 8px 20px;
-            font-size: 15px;
+            padding: 0 20px;
+            font-size: 14px;
             text-transform: uppercase;
         }
 
@@ -111,7 +130,7 @@
             width: 100%;
             height: auto;
             display: block;
-            max-height: 450px;
+            max-height: 500px;
             object-fit: cover;
         }
 
@@ -121,13 +140,13 @@
             margin: 40px auto;
             display: grid;
             grid-template-columns: 1.5fr 1fr;
-            gap: 40px;
+            gap: 30px;
+            padding: 0 20px;
         }
 
         @media (max-width: 900px) {
             .content-container {
                 grid-template-columns: 1fr;
-                padding: 0 20px;
             }
         }
 
@@ -145,8 +164,8 @@
         }
 
         .btn-vorlesen {
-            background: #eee;
-            border: 1px solid #ccc;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
             padding: 4px 8px;
             font-size: 12px;
             color: #555;
@@ -160,18 +179,20 @@
         .news-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .news-item {
             display: flex;
             background: #fff;
-            border-bottom: 1px solid #eee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .news-content {
-            padding: 20px 20px 20px 0;
+            padding: 20px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .news-title {
@@ -193,6 +214,7 @@
             color: #444;
             margin-bottom: 10px;
             line-height: 1.5;
+            flex: 1;
         }
 
         .news-date {
@@ -201,7 +223,7 @@
         }
 
         .news-image {
-            width: 250px;
+            width: 280px;
             background: #ddd;
             flex-shrink: 0;
             position: relative;
@@ -219,7 +241,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 2px;
             background: #fff;
-            border: 2px solid #fff;
         }
 
         .grid-tile {
@@ -254,35 +275,33 @@
 </head>
 <body>
 
-    <div style="background:#fff; border-bottom: 1px solid #ddd;">
+    <div class="header-outer">
         <div class="header-container">
-            <div class="header-top">
-                <div class="logo">
-                    <a href="index.html"><img src="logo-nok-new.jpg" alt="Neckar-Odenwald-Kreis"></a>
+            <div class="logo">
+                <a href="index.html"><img src="logo-nok-new.jpg" alt="Neckar-Odenwald-Kreis"></a>
+            </div>
+            
+            <div class="header-right">
+                <div class="header-tools">
+                    <a href="#" class="tool-icon black"><i class="fa-solid fa-universal-access"></i></a>
+                    <a href="#" class="tool-icon blue">AA</a>
                 </div>
                 
-                <div style="display:flex; flex-direction:column; align-items:flex-end; gap: 15px;">
-                    <div class="header-tools">
-                        <a href="#" class="tool-icon black"><i class="fa-solid fa-universal-access"></i></a>
-                        <a href="#" class="tool-icon blue">AA</a>
-                    </div>
-                    
-                    <nav class="main-nav">
-                        <ul>
-                            <li><a href="service.html">Service</a></li>
-                            <li><a href="#">Landratsamt</a></li>
-                            <li><a href="#">Landkreis</a></li>
-                            <li><a href="#">Kreistag</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="service.html">SERVICE</a></li>
+                        <li><a href="#">LANDRATSAMT</a></li>
+                        <li><a href="#">LANDKREIS</a></li>
+                        <li><a href="#">KREISTAG</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
 
     <div class="hero">
         <a href="service.html" title="Zur Service Seite">
-            <img src="hero-image.jpg" alt="Landratsamt Gebude">
+            <img src="hero-image.jpg" alt="Landratsamt Gebäude">
         </a>
     </div>
 
@@ -298,31 +317,31 @@
             <div class="news-list">
                 <div class="news-item">
                     <div class="news-content">
-                        <a href="#" class="news-title">After-Work-Event she works@NOK im Rahmen der Frauenwirtschaftstage am 8. Oktober  Anmeldungen ab sofort mglich</a>
-                        <p class="news-text">Anlsslich der diesjhrigen landesweiten Frauenwirtschaftstage findet am Donn...</p>
+                        <a href="#" class="news-title">After-Work-Event „she works@NOK“ im Rahmen der Frauenwirtschaftstage am 8. Oktober – Anmeldungen ab sofort möglich</a>
+                        <p class="news-text">Anlässlich der diesjährigen landesweiten Frauenwirtschaftstage findet am Donn...</p>
                         <div class="news-date">11.09.2026</div>
                     </div>
                     <div class="news-image">
-                        <!-- Platzhalter Bild aus Screenshot nachempfunden -->
+                        <!-- Platzhalter Bild -->
                         <div style="width:100%; height:100%; background:#2c3e50;"></div>
                     </div>
                 </div>
 
                 <div class="news-item">
                     <div class="news-content">
-                        <a href="#" class="news-title">Personalversammlung: Landratsamt ist am Dienstag, 15. September vormittags geschlossen  Zulassungsstellen ffnen am Nachmittag</a>
-                        <p class="news-text">Fr die Bediensteten des Landratsamts findet am Dienstag, 15. September eine ...</p>
+                        <a href="#" class="news-title">Personalversammlung: Landratsamt ist am Dienstag, 15. September vormittags geschlossen – Zulassungsstellen öffnen am Nachmittag</a>
+                        <p class="news-text">Für die Bediensteten des Landratsamts findet am Dienstag, 15. September eine ...</p>
                         <div class="news-date">11.09.2026</div>
                     </div>
                     <div class="news-image">
-                        <img src="hero-image.jpg" alt="Landratsamt Gebude">
+                        <img src="hero-image.jpg" alt="Landratsamt Gebäude">
                     </div>
                 </div>
                 
                 <div class="news-item">
                     <div class="news-content">
-                        <a href="#" class="news-title">Ich date meine Ausbildung: Lehrstellenbrse Neckar-Odenwald-Kreis am 10. Oktober in der Pattberghalle Neckarelz</a>
-                        <p class="news-text">Ein Date mit Ausbildungsbetrieben knnen Schlerinnen und Schler am Samsta...</p>
+                        <a href="#" class="news-title">Ich date meine Ausbildung: Lehrstellenbörse Neckar-Odenwald-Kreis am 10. Oktober in der Pattberghalle Neckarelz</a>
+                        <p class="news-text">Ein „Date mit Ausbildungsbetrieben“ können Schülerinnen und Schüler am Samsta...</p>
                         <div class="news-date">11.09.2026</div>
                     </div>
                     <div class="news-image">
@@ -333,7 +352,7 @@
                 <div class="news-item">
                     <div class="news-content">
                         <a href="#" class="news-title">Ausschreibung des Zivilcouragepreises 2026: Mutige Helferinnen und Helfer gesucht</a>
-                        <p class="news-text">Hingeschaut und gehandelt  dafr sollen mutige Menschen belohnt werden. Die ...</p>
+                        <p class="news-text">Hingeschaut und gehandelt – dafür sollen mutige Menschen belohnt werden. Die ...</p>
                         <div class="news-date">10.09.2026</div>
                     </div>
                     <div class="news-image">
@@ -352,7 +371,7 @@
             <div class="direkt-zu-grid">
                 <a href="#" class="grid-tile">
                     <i class="fa-solid fa-bullhorn"></i>
-                    <span>ffentliche<br>Bekanntmachungen</span>
+                    <span>Öffentliche<br>Bekanntmachungen</span>
                 </a>
                 <a href="#" class="grid-tile">
                     <i class="fa-solid fa-swirl" style="font-family: Arial; font-style: normal; font-weight: bold; border-radius: 50%; background: #fff; color: var(--nok-blue); width: 45px; height: 45px; line-height: 45px; text-align: center;">e</i>
@@ -364,11 +383,11 @@
                 </a>
                 <a href="#" class="grid-tile">
                     <i class="fa-regular fa-clock"></i>
-                    <span>Allgemeine<br>ffnungszeiten</span>
+                    <span>Allgemeine<br>Öffnungszeiten</span>
                 </a>
                 <a href="#" class="grid-tile">
                     <i class="fa-solid fa-camera"></i>
-                    <span>Imagefilm und<br>digitale<br>Landkreisbroschre</span>
+                    <span>Imagefilm und<br>digitale<br>Landkreisbroschüre</span>
                 </a>
                 <a href="#" class="grid-tile">
                     <i class="fa-solid fa-user-tie"></i>
@@ -380,7 +399,7 @@
                 </a>
                 <a href="#" class="grid-tile">
                     <i class="fa-solid fa-square-parking"></i>
-                    <span>Bugelder</span>
+                    <span>Bußgelder</span>
                 </a>
                 <a href="#" class="grid-tile">
                     <i class="fa-solid fa-book-open-reader"></i>
@@ -392,4 +411,7 @@
     </div>
 
 </body>
-</html>
+</html>'''
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html)
