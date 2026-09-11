@@ -120,17 +120,59 @@
         /* HERO AREA */
         .hero {
             width: 100%;
-        }
-        .hero a {
-            display: block;
-            width: 100%;
+            position: relative;
+            max-height: 450px;
+            overflow: hidden;
+            display: flex;
         }
         .hero img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
-            max-height: 500px;
             object-fit: cover;
+            min-height: 400px;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(40, 40, 40, 0.45); /* Leicht dunkelgraues Glas */
+            backdrop-filter: blur(2px); /* Glass-Effekt */
+            z-index: 1;
+        }
+        .hero-content {
+            position: absolute;
+            bottom: 25%; /* Oberes unteres Viertel */
+            left: 10%; /* Angepasst linksbündig */
+            z-index: 2;
+            color: #fff;
+            text-align: left;
+            max-width: 600px;
+        }
+        .hero-content h1 {
+            font-size: 34px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+            letter-spacing: 0.5px;
+        }
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--nok-blue);
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .btn-cta:hover {
+            background-color: var(--nok-blue-hover);
+            transform: translateY(-2px);
         }
 
         /* MAIN CONTENT */
@@ -305,9 +347,12 @@
     </div>
 
     <div class="hero">
-        <a href="service.html" title="Zur Service Seite">
-            <img src="hero-image.jpg" alt="Landratsamt Gebäude">
-        </a>
+        <img src="hero-image.jpg" alt="Landratsamt Gebäude">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Entdecken Sie unsere digitalen Services</h1>
+            <a href="service.html" class="btn-cta">Digitales Landratsamt</a>
+        </div>
     </div>
 
     <div class="content-container">
