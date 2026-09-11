@@ -33,7 +33,7 @@ template = """<!DOCTYPE html>
 <body>
     <div class="header">
         <div><a href="service.html" class="back-link">← Zurück zur Übersicht (Lebenslagen)</a></div>
-        <img src="logo-nok.png" height="40" style="filter: drop-shadow(0 0 2px rgba(0,0,0,0.1));" alt="Logo">
+        <img src="logo-nok-new.jpg" alt="Logo" style="height: 45px !important; width: auto !important; display: block; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));">
     </div>
     <div class="content">
         <h1>{title}</h1>
